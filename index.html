@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#e8467c"><title>지문분석 학습지</title>
+<style>
+:root{--p:#e8467c;--bg:#fff7fa;--b:#f3c6d6;--t:#222}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.6 system-ui,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;background:var(--bg);color:var(--t);padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+nav{position:sticky;top:0;z-index:5;display:flex;background:var(--p);padding-top:env(safe-area-inset-top)}
+nav button{flex:1;background:none;border:0;color:#fff;padding:12px 4px;font:inherit;font-weight:700}
+nav button.on{background:#c92f65}
+section{max-width:760px;margin:0 auto;padding:10px}
+.card{background:#fff;border:1px solid var(--b);border-radius:12px;padding:12px;margin-bottom:12px}
+h3{margin:0 0 8px;color:var(--p)}
+input,select,textarea{font:inherit;padding:8px;border:1px solid #d9b3c3;border-radius:8px;width:100%;background:#fff}
+.row{display:flex;gap:6px;margin:6px 0;flex-wrap:wrap}.row>*{flex:1;min-width:70px}
+button,.btn{font:inherit;background:var(--p);color:#fff;border:0;border-radius:8px;padding:9px 12px;font-weight:700;text-align:center;cursor:pointer;display:inline-block}
+button.g,.btn.g{background:#fff;color:var(--p);border:1.5px solid var(--p)}
+button:disabled{opacity:.5}
+.chk label{display:inline-block;margin:4px 10px 4px 0}.chk input{width:auto}
+.it{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:8px 0;border-top:1px dashed var(--b)}
+.it small{color:#777;display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:55vw}
+.it .a{display:flex;gap:4px}.it button{padding:5px 9px}
+.sh{background:#fff;border:1px solid var(--b);border-radius:12px;padding:14px;margin:0 0 12px}
+.sh h1{font-size:21px;color:var(--p);margin:0 0 4px}
+.v{font-weight:800;border-bottom:1px dashed #bbb;margin:14px 0 4px}.v:before{content:"✔ ";color:var(--p)}
+.sen{margin:5px 0}.sen b{color:var(--p)}.ko{color:#555;font-size:13.5px}.nt{color:#c92f65;font-size:12.5px}
+mark{background:#fff176;padding:0 1px}
+.sc{border:2.5px solid #f48fb1;border-radius:14px;padding:8px;margin:10px 0;break-inside:avoid}
+.sc.k{border-color:#e8467c;background:#fff0f5}
+.sc h4{margin:0 0 4px}.sc svg{width:100%;height:auto;background:#fffdf5;border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:14px}td{border-bottom:1px solid #eee;padding:3px 6px}
+.qa{color:#999;font-size:13px}
+@media print{nav,.np,section:not(#res){display:none!important}body{background:#fff}.sh{border:0;padding:0}@page{margin:10mm}}
+</style></head><body>
+<nav><button onclick="tab('lib')">📚 지문</button><button onclick="tab('mk')">✏️ 만들기</button><button onclick="tab('res')">📄 학습지</button><button onclick="tab('set')">⚙️ 설정</button></nav>
+
+<section id="lib">
+<div class="card"><h3>지문 저장</h3>
+<div class="row"><input id="ly" type="number" value="2026"><select id="lg" class="sg"></select><select id="lm" class="sm"></select><input id="ln" type="number" placeholder="번호"></div>
+<textarea id="lt" rows="6" placeholder="지문(문제 전체)을 붙여넣으세요"></textarea>
+<div class="row"><button onclick="savePassage()">저장</button><button class="g" onclick="clearForm()">새로 쓰기</button></div>
+<div class="row"><label class="btn g">📥 PDF/TXT 일괄 등록<input type="file" accept=".pdf,.txt" hidden onchange="importFile(this.files[0]);this.value=''"></label></div>
+<small>EBSi에서 받은 PDF를 고르면 위에서 선택한 연도·학년·월로 18~45번을 자동 분리해 저장합니다.</small></div>
+<div class="card"><h3>보관함</h3><input id="q" placeholder="검색 (번호·내용)" oninput="renderLib()"><div id="plist"></div>
+<div class="row"><button class="g" onclick="backup()">백업 저장</button><label class="btn g">백업 복원<input type="file" accept=".json" hidden onchange="restore(this.files[0]);this.value=''"></label></div></div>
+</section>
+
+<section id="mk" hidden><div class="card"><h3>학습지 만들기</h3>
+<div class="row"><input id="my" type="number" value="2026"><select id="mg" class="sg"></select><select id="mm" class="sm"></select><input id="mn" type="number" placeholder="번호"></div>
+<div class="row"><select id="mc"><option value="random">🎲 랜덤 (장면마다 5종 섞기)</option><option value="free">✨ AI 자유 캐릭터 (매번 새로)</option><option value="zola">졸라맨</option><option value="mickey">미키마우스</option><option value="peter">피터팬</option><option value="sherlock">셜록 홈즈</option><option value="pooh">곰돌이 푸</option></select></div>
+<div class="chk"><label><input type="checkbox" id="o_sc" checked>그림 도식</label><label><input type="checkbox" id="o_vo" checked>어휘</label><label><input type="checkbox" id="o_gr" checked>어법·구문</label><label><input type="checkbox" id="o_ch" checked>선지 분석</label><label><input type="checkbox" id="o_qz" checked>확인문제</label></div>
+<div class="row"><button id="gb" onclick="make()">✨ 학습지 생성</button></div><div id="st"></div></div></section>
+
+<section id="res" hidden><div class="card np"><h3>만든 학습지</h3><div id="sl"></div></div>
+<div class="row np" id="acts" hidden><button onclick="share()">📤 공유</button><button onclick="window.print()">🖨 PDF 저장·인쇄</button></div>
+<div id="sheet"></div></section>
+
+<section id="set" hidden><div class="card"><h3>설정</h3>
+<label>Gemini API 키</label><input id="ck" type="password" autocomplete="off" placeholder="AI Studio에서 발급한 키">
+<label>모델</label><input id="cm" placeholder="gemini-2.5-flash">
+<div class="row"><button onclick="saveCfg()">저장</button></div>
+<small>키는 이 폰의 브라우저에만 저장되며 Gemini 서버로만 전송됩니다.</small></div></section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const LS=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
+const SV=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{alert('저장 공간이 부족합니다. 백업 후 오래된 항목을 삭제하세요.')}};
+let P=LS('pp_p',[]),S=LS('pp_s',[]),cfg=LS('pp_c',{key:'',model:'gemini-2.5-flash'}),editId=null,cur=null;
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const clean=s=>{s=String(s||'');if(!/^\s*<svg/i.test(s))return'';return s.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi,'').replace(/\son\w+\s*=\s*("[^"]*"|'[^']*')/gi,'').replace(/javascript:/gi,'')};
+const num=n=>n>=1&&n<=20?String.fromCharCode(9311+n):'('+n+')';
+document.querySelectorAll('.sg').forEach(e=>{e.innerHTML=[1,2,3].map(g=>`<option value="${g}">고${g}</option>`).join('')});
+document.querySelectorAll('.sm').forEach(e=>{e.innerHTML=[3,4,5,6,7,9,10,11].map(m=>`<option value="${m}">${m}월</option>`).join('');e.value=9});
+$('#ck').value=cfg.key;$('#cm').value=cfg.model;
+function tab(n){document.querySelectorAll('section').forEach(e=>e.hidden=e.id!=n);document.querySelectorAll('nav button').forEach((b,i)=>b.classList.toggle('on',['lib','mk','res','set'][i]==n));if(n=='lib')renderLib();if(n=='res')renderSL();scrollTo(0,0)}
+tab('lib');
+function saveCfg(){cfg={key:$('#ck').value.trim(),model:$('#cm').value.trim()||'gemini-2.5-flash'};SV('pp_c',cfg);alert('저장했습니다')}
+
+/* 지문 보관함 */
+const lab=p=>`${p.y} 고${p.g} ${p.m}월 ${p.no}번`;
+function clearForm(){editId=null;$('#ln').value='';$('#lt').value=''}
+function savePassage(){const o={y:+$('#ly').value,g:+$('#lg').value,m:+$('#lm').value,no:+$('#ln').value,text:$('#lt').value.trim()};
+if(!o.no||!o.text)return alert('번호와 지문을 입력하세요');
+const x=P.find(p=>p.id===editId)||P.find(p=>p.y==o.y&&p.g==o.g&&p.m==o.m&&p.no==o.no);
+x?Object.assign(x,o):P.push({id:Date.now(),...o});SV('pp_p',P);clearForm();renderLib()}
+function editP(id){const p=P.find(p=>p.id==id);editId=id;$('#ly').value=p.y;$('#lg').value=p.g;$('#lm').value=p.m;$('#ln').value=p.no;$('#lt').value=p.text;scrollTo(0,0)}
+function delP(id){if(confirm('삭제할까요?')){P=P.filter(p=>p.id!=id);SV('pp_p',P);renderLib()}}
+function renderLib(){const q=$('#q').value.trim().toLowerCase();
+const l=P.filter(p=>!q||(lab(p)+p.text).toLowerCase().includes(q)).sort((a,b)=>b.y-a.y||a.g-b.g||a.m-b.m||a.no-b.no);
+$('#plist').innerHTML=l.length?l.map(p=>`<div class="it"><div><b>${lab(p)}</b><small>${esc(p.text.slice(0,70))}</small></div><div class="a"><button class="g" onclick="editP(${p.id})">수정</button><button class="g" onclick="delP(${p.id})">삭제</button></div></div>`).join(''):'<p>저장된 지문이 없습니다. 위에서 지문을 추가하세요.</p>'}
+async function readPdf(f){const pdf=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise;let t='';
+for(let i=1;i<=pdf.numPages;i++){const c=await(await pdf.getPage(i)).getTextContent();let y=null;for(const it of c.items){if(y!==null&&Math.abs(it.transform[5]-y)>3)t+='\n';t+=it.str+' ';y=it.transform[5]}t+='\n'}return t}
+function split(t){const re=/(?:^|\n)\s*(\d{2})\s*[.．]\s/g;let m,pos=[],n=18;while((m=re.exec(t))){if(+m[1]==n){pos.push([n,m.index]);n++}}
+return pos.map((p,i)=>[p[0],t.slice(p[1],i+1<pos.length?pos[i+1][1]:p[1]+4000).trim().slice(0,4000)])}
+async function importFile(f){if(!f)return;try{
+if(typeof pdfjsLib!='undefined')pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+const t=/\.pdf$/i.test(f.name)?await readPdf(f):await f.text();const b={y:+$('#ly').value,g:+$('#lg').value,m:+$('#lm').value};const c=split(t);
+if(!c.length){$('#lt').value=t.slice(0,6000);return alert('번호를 자동으로 나누지 못했습니다. 텍스트를 아래 칸에 넣었으니 번호를 입력해 저장하세요.')}
+c.forEach(([no,text])=>{const x=P.find(p=>p.y==b.y&&p.g==b.g&&p.m==b.m&&p.no==no);x?x.text=text:P.push({id:Date.now()+no,...b,no,text})});
+SV('pp_p',P);renderLib();alert(c.length+'개 지문을 저장했습니다. 보관함에서 확인·수정하세요.')}catch(e){alert('파일을 읽지 못했습니다: '+e.message)}}
+function backup(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({p:P,s:S})],{type:'application/json'}));a.download='passage-backup.json';a.click()}
+async function restore(f){if(!f)return;try{const d=JSON.parse(await f.text());(d.p||[]).forEach(p=>{if(!P.find(x=>x.id==p.id))P.push(p)});(d.s||[]).forEach(s=>{if(!S.find(x=>x.id==s.id))S.push(s)});SV('pp_p',P);saveS();renderLib();alert('복원했습니다')}catch{alert('백업 파일이 올바르지 않습니다')}}
+
+/* Gemini */
+async function gem(prompt){if(!cfg.key)throw Error('설정 탭에서 API 키를 입력하세요');
+const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.model}:generateContent?key=${encodeURIComponent(cfg.key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:1}})});
+const j=await r.json();if(!r.ok)throw Error(j.error?.message||r.status);
+const t=(j.candidates?.[0]?.content?.parts||[]).map(p=>p.text||'').join('').replace(/^\s*```json|```\s*$/g,'').trim();return JSON.parse(t)}
+const CH={zola:'졸라맨(동그란 머리+막대 몸의 단순 낙서 인물)',mickey:'둥근 검은 귀와 큰 눈의 클래식 만화풍 쥐(공식 디자인 복제 금지, 특징만 살린 단순한 자체 일러스트)',peter:'초록 모자와 깃털을 쓴 장난꾸러기 소년(단순한 자체 일러스트)',sherlock:'사냥모자·파이프·돋보기를 든 탐정',pooh:'꿀단지를 든 둥글고 노란 곰(단순한 자체 일러스트)'};
+const chDesc=c=>c=='random'?'장면마다 다음 5종 중 서로 다른 캐릭터를 섞어 사용: '+Object.values(CH).join(' / '):c=='free'?'이번 지문 주제에 어울리는 완전히 새로운 오리지널 캐릭터를 직접 창작해 모든 장면에 일관되게 등장시킴':CH[c];
+async function make(){const y=+$('#my').value,g=+$('#mg').value,m=+$('#mm').value,no=+$('#mn').value;
+const p=P.find(p=>p.y==y&&p.g==g&&p.m==m&&p.no==no);if(!p)return alert('보관함에 없는 지문입니다. 먼저 지문 탭에서 저장하세요.');
+const ch=$('#mc').value,opts={sc:$('#o_sc').checked,vo:$('#o_vo').checked,gr:$('#o_gr').checked,ch:$('#o_ch').checked,qz:$('#o_qz').checked};
+$('#gb').disabled=true;$('#st').textContent='AI가 분석하고 그림을 그리는 중입니다. 30초~1분 걸립니다.';
+const pr=`너는 대한민국 최고의 영어 일타강사다. 아래 고${g} ${m}월 모의고사 ${no}번 문제를 분석해 학습지 데이터를 JSON으로만 출력하라.
+스키마: {"topic":"소재(한글)","title":"영어 제목 + 한글 제목","subject":"주제(한글 한 줄)","gist":"요지(한글)","summary":"한글 요약 2문장","flow":"A → B → C 형태의 흐름도(영어 키워드+한글)","sentences":[{"n":1,"en":"영어 문장","ko":"해석","note":"핵심 구문·어법 메모(없으면 빈 문자열)","hl":["형광펜 칠할 구절(en에 그대로 있는 부분 문자열)"]}],"scenes":[{"range":"1-3","role":"도입 등 글에서의 역할","title":"소제목","point":"핵심 설명(한글 2줄 이내)","key":false,"svg":"<svg viewBox='0 0 400 220' xmlns='http://www.w3.org/2000/svg'>...</svg>"}],"vocab":[{"w":"단어","m":"뜻"}],"grammar":[{"p":"포인트","e":"설명"}],"choices":[{"n":1,"why":"정답/오답 이유"}],"quiz":[{"q":"문제","a":"정답"}]}
+규칙: 지문 본문 문장 전체를 sentences에 빠짐없이 넣는다(문제 발문·선지 제외). scenes는 3~5개로 문장 묶음별 장면을 만들고 글의 핵심 요지를 담은 장면 하나는 key를 true로 한다. svg는 viewBox 0 0 400 220의 완결형 SVG이며 속성은 작은따옴표만 쓰고 script를 쓰지 않는다. 장면마다 구도·등장인물 수·표정·소품·말풍선(<text>)·화살표·O/X를 지문 내용에 맞게 서로 다르고 자유롭게 창작하되 글자는 짧은 한글/영어로 한다. 캐릭터: ${chDesc(ch)}. 선지가 원문에 없으면 choices는 빈 배열. vocab 8~12개, grammar 3개, quiz 3개.
+[원문]
+${p.text}`;
+try{const d=await gem(pr);(d.scenes||[]).forEach(s=>s.svg=clean(s.svg));cur={id:Date.now(),y,g,m,no,ch,d,opts};S.unshift(cur);saveS();$('#st').textContent='';show()}
+catch(e){$('#st').textContent='실패: '+e.message+' (다시 시도해 보세요)'}finally{$('#gb').disabled=false}}
+function saveS(){S=S.slice(0,30);while(S.length){try{localStorage.setItem('pp_s',JSON.stringify(S));return}catch{S.pop()}}}
+
+/* 학습지 */
+function renderSL(){$('#sl').innerHTML=S.length?S.map(s=>`<div class="it"><b>${lab(s)}</b><div class="a"><button class="g" onclick="openS(${s.id})">열기</button><button class="g" onclick="delS(${s.id})">삭제</button></div></div>`).join(''):'<p>아직 만든 학습지가 없습니다. 만들기 탭에서 생성하세요.</p>';$('#acts').hidden=!cur;if(cur)$('#sheet').innerHTML=render(cur)}
+function openS(id){cur=S.find(s=>s.id==id);show()}
+function delS(id){if(confirm('삭제할까요?')){S=S.filter(s=>s.id!=id);if(cur&&cur.id==id){cur=null;$('#sheet').innerHTML=''}saveS();renderSL()}}
+function show(){tab('res')}
+function render(s){const d=s.d,o=s.opts,kv=(k,v)=>v?`<div class="v">${k}</div><div>${esc(v)}</div>`:'';
+let h=`<div class="sh"><h1>${s.y}년 고${s.g} ${s.m}월 ${s.no}번</h1>`+kv('소재',d.topic)+kv('제목',d.title)+kv('주제',d.subject)+kv('요지',d.gist)+kv('요약',d.summary)+kv('흐름도',d.flow);
+h+='<div class="v">지문 · 해석</div>'+(d.sentences||[]).map(x=>{let e=esc(x.en);(x.hl||[]).forEach(p=>{const q=esc(p);if(q&&e.includes(q))e=e.replace(q,'<mark>'+q+'</mark>')});return`<div class="sen"><b>${num(x.n)}</b> ${e}<div class="ko">${esc(x.ko)}</div>${x.note?`<div class="nt">✎ ${esc(x.note)}</div>`:''}</div>`}).join('');
+if(o.sc&&d.scenes?.length)h+='<div class="v">문장 묶음별 도식 분석</div>'+d.scenes.map((x,i)=>`<div class="sc${x.key?' k':''}"><h4>${x.key?'★ ':''}[${esc(x.range)}번 문장] ${esc(x.role)}: ${esc(x.title)}</h4>${x.svg||''}<div>${esc(x.point)}</div><button class="g np" onclick="redraw(${i},this)">🔄 그림 다시 그리기</button></div>`).join('');
+if(o.vo&&d.vocab?.length)h+='<div class="v">핵심 어휘</div><table>'+d.vocab.map(x=>`<tr><td><b>${esc(x.w)}</b></td><td>${esc(x.m)}</td></tr>`).join('')+'</table>';
+if(o.gr&&d.grammar?.length)h+='<div class="v">어법·구문 포인트</div>'+d.grammar.map(x=>`<div class="sen"><b>${esc(x.p)}</b> ${esc(x.e)}</div>`).join('');
+if(o.ch&&d.choices?.length)h+='<div class="v">선지 분석</div>'+d.choices.map(x=>`<div class="sen"><b>${num(x.n)}</b> ${esc(x.why)}</div>`).join('');
+if(o.qz&&d.quiz?.length)h+='<div class="v">확인문제</div>'+d.quiz.map((x,i)=>`<div class="sen">${i+1}. ${esc(x.q)}<div class="qa">정답: ${esc(x.a)}</div></div>`).join('');
+return h+'</div>'}
+async function redraw(i,b){const sc=cur.d.scenes[i];b.disabled=true;b.textContent='그리는 중…';
+try{const r=await gem(`다음 장면 설명에 맞춰 이전과 완전히 다른 구도·표정·소품의 새 SVG 그림을 {"svg":"..."} JSON으로만 출력하라. viewBox 0 0 400 220, 속성은 작은따옴표만, script 금지, 말풍선·화살표·O/X 자유롭게. 캐릭터: ${chDesc(cur.ch)}. 장면: ${sc.role} / ${sc.title} / ${sc.point}. 글의 요지: ${cur.d.gist}`);const v=clean(r.svg);if(v)sc.svg=v;saveS()}catch(e){alert('실패: '+e.message)}
+renderSL()}
+async function share(){const d=cur.d,t=`${lab(cur)} 지문분석\n\n소재: ${d.topic}\n주제: ${d.subject}\n요지: ${d.gist}\n요약: ${d.summary}\n흐름: ${d.flow}\n\n`+(d.sentences||[]).map(x=>`${num(x.n)} ${x.en}\n→ ${x.ko}`).join('\n');
+if(navigator.share){try{await navigator.share({title:lab(cur)+' 지문분석',text:t})}catch{}}else{try{await navigator.clipboard.writeText(t);alert('내용을 복사했습니다. 카카오톡에 붙여넣으세요.')}catch{alert('이 브라우저는 공유를 지원하지 않습니다.')}}}
+</script></body></html>
