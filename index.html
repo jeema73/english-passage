@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#e8467c"><title>지문분석 학습지</title>
 <style>
-:root{--ink:#2f3e46;--fo:#3f6b4f;--ln:#d8cfb8;--co:#d9825b;--su:#e9b44c;--sk:#7fb5cc;--mo:#8fae7a}
+:root{--ink:#2f3e46;--fo:#3f6b4f;--ln:#d8cfb8;--co:#d9825b;--su:#e9b44c;--sk:#7fb5cc;--mo:#8fae7a;--pk:#f4a6b8}
 *{box-sizing:border-box}[hidden]{display:none!important}
 body{margin:0;background:#f4efe0;color:var(--ink);font:15px/1.65 "Gowun Dodum",system-ui,"Apple SD Gothic Neo",sans-serif}
 h2,h3,.top,.v,.tag,.ban,.chip{font-family:"Gowun Batang",serif}
@@ -15,7 +15,9 @@ h3{margin:0 0 8px;color:var(--fo);font-size:18px}
 input,select,textarea{font:inherit;padding:8px;border:1px solid var(--ln);border-radius:10px;width:100%;background:#fff}
 .row{display:flex;gap:6px;margin:6px 0;flex-wrap:wrap}.row>*{flex:1;min-width:70px}
 button,.btn{font:700 14px "Gowun Dodum",sans-serif;background:var(--fo);color:#fff;border:0;border-radius:10px;padding:9px 14px;cursor:pointer;display:inline-block;text-align:center}
-button.g,.btn.g{background:#fff;color:var(--fo);border:1.5px solid var(--fo)}button:disabled{opacity:.5}
+button.g,.btn.g{background:#fff;color:var(--fo);border:1.5px solid var(--fo)}
+button.pk,.btn.pk{background:#e85d88;color:#fff;border:0}
+button:disabled{opacity:.5}
 .chk label{display:inline-block;margin:4px 10px 4px 0}.chk input{width:auto}
 details{border-top:1px solid var(--ln)}summary{padding:9px 2px;font-weight:700;cursor:pointer;color:var(--fo)}summary small{color:#888;font-weight:400}
 .it{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:6px 0}
@@ -35,9 +37,22 @@ mark{background:linear-gradient(transparent 55%,#f6c85f 55%)}.cn{color:var(--co)
 .ko{font-size:13.5px;color:#444}.eye,.kp,.ck,.cheer{border-radius:12px;padding:10px;margin-top:12px;font-size:13.5px}
 .eye{background:#eaf3e3;border:1.5px solid var(--mo)}.eye ol{margin:4px 0 0 18px;padding:0}
 .ban{background:linear-gradient(90deg,#3f6b4f,#6a9a7a);color:#fff;border-radius:99px;text-align:center;padding:7px;font-size:16px;margin-bottom:10px}
-.stg{display:grid;grid-template-columns:1fr 1fr;gap:8px}.st{border:1.5px solid var(--ln);border-radius:14px;padding:8px;background:#fff}
-.chip{background:var(--co);color:#fff;border-radius:99px;padding:0 9px;font-size:12px;margin-right:6px}
-.stb{display:flex;gap:6px;align-items:center;margin-top:4px}.stb svg{width:44%;height:auto;flex:none;border-radius:10px}.bub{background:#f4efe0;border-radius:10px;padding:6px 8px;font-size:12.5px;line-height:1.45}
+
+/* 스케치노트 프롬프트 스튜디오 & 프리뷰 */
+.pr-box{background:#fff5f7;border:2px solid var(--pk);border-radius:14px;padding:12px;margin-bottom:12px}
+.pr-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.pr-head b{color:#c93b67;font-size:15px}
+.pr-ta{font:13px/1.55 monospace,"Gowun Dodum",sans-serif;background:#fff;border:1.5px solid #f2c6d2;border-radius:10px;padding:10px;width:100%;height:210px;resize:vertical;color:#333}
+.sn-img-wrap{text-align:center;margin:10px 0;border:2.5px solid var(--pk);border-radius:16px;background:#fff;padding:8px;box-shadow:0 4px 12px rgba(0,0,0,0.04)}
+.sn-img-wrap img{max-width:100%;height:auto;border-radius:10px;display:block;margin:0 auto}
+.stg{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:#fff;border:2.5px solid var(--pk);border-radius:16px;padding:12px;position:relative}
+.st{border:1px dashed #e5b3c3;border-radius:12px;padding:10px;background:#fffdfd}
+.st-hd{font-weight:700;color:#b8335e;font-size:14px;border-bottom:1.5px solid #f9d8e2;padding-bottom:4px;margin-bottom:6px}
+.st-sc{font-size:12.5px;color:#555;background:#fdf4f6;border-radius:8px;padding:6px 8px;margin-bottom:6px}
+.st-tx{font-size:13px;line-height:1.5;color:#222}
+.hl-y{background:linear-gradient(transparent 50%,#fff176 50%);font-weight:700;padding:0 2px}
+.hl-p{background:linear-gradient(transparent 50%,#f8bbd0 50%);font-weight:700;padding:0 2px}
+
 .vs{display:flex;gap:8px;align-items:center}.vs>div{flex:1;border-radius:10px;padding:8px;font-size:13.5px}.ok{background:#e4f1e0;border:1.5px solid var(--mo)}.no{background:#fbe6dd;border:1.5px solid var(--co)}
 .kp{background:#fff6d9;border:2px dashed var(--su)}.kp ul{margin:4px 0 0 16px;padding:0}
 .sx{border-left:4px solid var(--sk);background:#f1f8fb;border-radius:8px;padding:6px 10px;margin:6px 0;font-size:13.5px}.sx code{color:#b3532f;font-size:12.5px}
@@ -62,11 +77,20 @@ table{border-collapse:collapse;width:100%;font-size:12.5px}th{background:#e8efd9
 <div class="row"><button class="g" onclick="backup()">백업 저장</button><label class="btn g">백업 복원<input type="file" accept=".json" hidden onchange="restore(this.files[0]);this.value=''"></label></div></div>
 </section>
 
-<section id="mk" hidden><div class="card"><h3>학습지 만들기</h3>
+<section id="mk" hidden><div class="card"><h3>학습지 & 스케치노트 프롬프트 만들기</h3>
 <div class="row"><input id="my" type="number" value="2026"><select id="mg" class="sg"></select><select id="mm" class="sm"></select><input id="mn" type="number" placeholder="번호"></div>
-<div class="row"><select id="mc"><option value="random">🎲 랜덤 (장면마다 5종 섞기)</option><option value="free">✨ AI 자유 캐릭터 (매번 새로)</option><option value="zola">졸라맨</option><option value="mickey">미키마우스</option><option value="peter">피터팬</option><option value="sherlock">셜록 홈즈</option><option value="pooh">곰돌이 푸</option></select></div>
-<div class="chk"><label><input type="checkbox" id="o_sc" checked>그림 도식</label><label><input type="checkbox" id="o_vo" checked>어휘</label><label><input type="checkbox" id="o_gr" checked>어법·구문</label><label><input type="checkbox" id="o_ch" checked>선지 분석</label><label><input type="checkbox" id="o_qz" checked>확인문제</label></div>
-<div class="row"><button id="gb" onclick="make()">✨ 학습지 생성</button></div><div id="st"></div></div></section>
+<label style="font-size:13px;font-weight:700;color:var(--fo)">🎨 스케치노트 주인공 캐릭터 스타일</label>
+<div class="row"><select id="mc">
+  <option value="stick">✏️ 클래식 귀여운 졸라맨 (볼터치+풍부한 표정의 정석 스틱맨)</option>
+  <option value="hamster">🐹 말랑 찹쌀떡 햄찌 & 토끼 (귀엽고 앙증맞은 다꾸 동물)</option>
+  <option value="cat">🕵️‍♂️ 명탐정 셜록 냥이 (돋보기·안경 쓴 똑똑한 고양이 탐정)</option>
+  <option value="girl">🎀 감성 다꾸 여고생 (동글동글 귀여운 SD 웹툰풍 캐릭터)</option>
+  <option value="bear">🧸 곰돌이와 꿀벌 친구 (포근한 동화풍 파스텔 곰돌이)</option>
+  <option value="seonbi">📜 갓 쓴 귀여운 조선 선비 (붓 들고 유쾌하게 리액션하는 캐릭터)</option>
+  <option value="auto">✨ 지문 맞춤형 AI 추천 캐릭터 (지문 소재에 딱 맞는 의인화 캐릭터)</option>
+</select></div>
+<div class="chk"><label><input type="checkbox" id="o_sc" checked>스케치노트 도식(프롬프트 생성)</label><label><input type="checkbox" id="o_vo" checked>어휘</label><label><input type="checkbox" id="o_gr" checked>어법·구문</label><label><input type="checkbox" id="o_ch" checked>선지 분석</label><label><input type="checkbox" id="o_qz" checked>확인문제</label></div>
+<div class="row"><button id="gb" onclick="make()">✨ 학습지 & 스케치노트 기획 생성</button></div><div id="st" style="font-weight:700;color:var(--fo);margin-top:6px;"></div></div></section>
 
 <section id="res" hidden><div class="card np"><h3>만든 학습지</h3><div id="sl"></div></div>
 <div class="row np" id="acts" hidden><button class="g" id="dn" onclick="fin()">🌱 학습 완료</button><button onclick="share()">📤 공유</button><button onclick="window.print()">🖨 PDF 저장·인쇄</button></div>
@@ -76,7 +100,7 @@ table{border-collapse:collapse;width:100%;font-size:12.5px}th{background:#e8efd9
 <label>Gemini API 키</label><input id="ck" type="password" autocomplete="off" placeholder="AI Studio에서 발급한 키">
 <label>이름 애칭</label><input id="cn" placeholder="향이"><label>모델</label><input id="cm" placeholder="gemini-2.5-flash">
 <div class="row"><button onclick="saveCfg()">저장</button></div>
-<small>키는 이 폰의 브라우저에만 저장되며 Gemini 서버로만 전송됩니다.</small></div></section>
+<small>키는 이 기기의 브라우저에만 저장되며 Gemini 서버로만 전송됩니다.</small></div></section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -86,7 +110,6 @@ const LS=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return 
 const SV=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{alert('저장 공간이 부족합니다. 백업 후 오래된 항목을 삭제하세요.')}};
 let P=LS('pp_p',[]),S=LS('pp_s',[]),cfg=LS('pp_c',{key:'',model:'gemini-2.5-flash'}),editId=null,cur=null;const NK=()=>cfg.nick||'향이';
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const clean=s=>{s=String(s||'');if(!/^\s*<svg/i.test(s))return'';return s.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi,'').replace(/\son\w+\s*=\s*("[^"]*"|'[^']*')/gi,'').replace(/javascript:/gi,'')};
 const num=n=>n>=1&&n<=20?String.fromCharCode(9311+n):'('+n+')';
 document.querySelectorAll('.sg').forEach(e=>{e.innerHTML=[1,2,3].map(g=>`<option value="${g}">고${g}</option>`).join('')});
 document.querySelectorAll('.sm').forEach(e=>{e.innerHTML=[3,4,5,6,7,9,10,11].map(m=>`<option value="${m}">${m}월</option>`).join('');e.value=9});
@@ -132,27 +155,181 @@ alert((window.np?'PDF '+window.np+'쪽을 읽었습니다.\n':'')+c.length+'개 
 function backup(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({p:P,s:S})],{type:'application/json'}));a.download='passage-backup.json';a.click()}
 async function restore(f){if(!f)return;try{const d=JSON.parse(await f.text());(d.p||[]).forEach(p=>{if(!P.find(x=>x.id==p.id))P.push(p)});(d.s||[]).forEach(s=>{if(!S.find(x=>x.id==s.id))S.push(s)});SV('pp_p',P);saveS();renderLib();alert('복원했습니다')}catch{alert('백업 파일이 올바르지 않습니다')}}
 
-/* Gemini */
+/* 캐릭터 스타일 설정 */
+const CHAR_MAP = {
+  stick: '검은색 펜 선으로 그린 단순하고 귀여운 졸라맨(스틱맨) 캐릭터 (분홍 볼터치와 익살맞고 직관적인 표정 변화)',
+  hamster: '말랑말랑한 찹쌀떡 햄찌(햄스터)와 아기 토끼 캐릭터 (통통한 볼살, 귀여운 손짓과 다채로운 리액션)',
+  cat: '사냥모자를 쓰고 돋보기를 든 귀여운 2등신 명탐정 고양이 캐릭터와 조수 아기새',
+  girl: '다이어리 꾸미기(다꾸) 스타일의 동글동글하고 귀여운 SD 단발머리 여고생 캐릭터',
+  bear: '파스텔 톤의 포근한 아기 곰돌이와 작은 꿀벌 친구 캐릭터',
+  seonbi: '작은 갓을 쓰고 도포를 입은 귀여운 2등신 조선 선비 캐릭터 (붓이나 부채를 들고 유쾌하게 감정 표현)',
+  auto: '이 지문의 핵심 소재를 가장 잘 대변하는 귀여운 2등신 마스코트 캐릭터 (AI가 지문 주제에 맞춰 설정한 캐릭터)'
+};
+
+/* 스케치노트 프롬프트 조립 함수 */
+function buildSketchnotePrompt(d, chKey){
+  const charDesc = d.customChar || CHAR_MAP[chKey] || CHAR_MAP.stick;
+  const st = d.steps || [];
+  const s1 = st[0] || {}, s2 = st[1] || {}, s3 = st[2] || {}, s4 = st[3] || {};
+  return `학생들이 한눈에 이해할 수 있는 '손그림 비주얼 노트테이킹(Sketchnote) 인포그래픽' 이미지를 그려줘.
+
+[1. 전체 레이아웃 및 디자인]
+- 가로형 비율(16:9 또는 4:3)의 깔끔한 흰색 줄노트 배경, 가장자리에 둥근 연분홍색 테두리 박스를 칠 것.
+- 내부는 2x2(4분할) 그리드로 나누어 1번(좌상) -> 2번(좌하) -> 3번(우상) -> 4번(우하) 순서로 배치할 것.
+- 여백과 모서리에는 작은 별(☆)과 하트(♡) 손그림 낙서를 아기자기하게 추가할 것.
+
+[2. 그림체 및 텍스트 스타일]
+- 그림체: ${charDesc}와 직관적인 미니 아이콘. 색연필이나 파스텔 톤 마카로 연하게 채색한 수작업 손그림 느낌.
+- 캐릭터 표현: 말풍선, 생각풍선, 물음표(?), 화살표(→), 대조 기호(vs), 동그라미(O)와 엑스(X) 표기 등을 적극 활용해 상황을 만화처럼 직관적으로 묘사할 것.
+- 글씨체: 또렷하고 깔끔한 한국어 손글씨(다꾸/필기체) 스타일. 핵심 키워드에는 노란색과 분홍색 형광펜 밑줄 하이라이트를 칠 것.
+
+[3. 4분할 칸별 상세 그림 및 텍스트 지시사항]
+
+▶ 1번 칸 (좌측 상단) - ${s1.head || '1 [도입]: 문제 제기'}
+- 그림 연출: ${s1.scene || ''}
+- 표기할 손글씨 텍스트:
+  ${(s1.lines || []).map(l => '• ' + l).join('\n  ')}
+- 형광펜 강조 키워드: ${(s1.hl || []).join(', ')}
+
+▶ 2번 칸 (좌측 하단) - ${s2.head || '2 [현상 분석/실험 제시]'}
+- 그림 연출: ${s2.scene || ''}
+- 표기할 손글씨 텍스트:
+  ${(s2.lines || []).map(l => '• ' + l).join('\n  ')}
+- 형광펜 강조 키워드: ${(s2.hl || []).join(', ')}
+
+▶ 3번 칸 (우측 상단) - ${s3.head || '3 [반전 및 대조]: A vs B'}
+- 그림 연출: ${s3.scene || ''}
+- 표기할 손글씨 텍스트:
+  ${(s3.lines || []).map(l => '• ' + l).join('\n  ')}
+- 형광펜 강조 키워드: ${(s3.hl || []).join(', ')}
+
+▶ 4번 칸 (우측 하단) - ${s4.head || '4 [결론]: ★핵심 요지'}
+- 그림 연출: ${s4.scene || ''}
+- 표기할 손글씨 텍스트:
+  ${(s4.lines || []).map(l => '• ' + l).join('\n  ')}
+- 형광펜 강조 키워드: ${(s4.hl || []).join(', ')}`;
+}
+
+/* Gemini 호출 */
 async function gem(prompt){if(!cfg.key)throw Error('설정 탭에서 API 키를 입력하세요');
-const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.model}:generateContent?key=${encodeURIComponent(cfg.key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:1,maxOutputTokens:30000}})});
+const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.model}:generateContent?key=${encodeURIComponent(cfg.key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:0.85,maxOutputTokens:30000}})});
 const j=await r.json();if(!r.ok)throw Error(j.error?.message||r.status);
 const t=(j.candidates?.[0]?.content?.parts||[]).map(p=>p.text||'').join('').replace(/^\s*```json|```\s*$/g,'').trim();return JSON.parse(t)}
-const CH={zola:'졸라맨(동그란 머리+막대 몸의 단순 낙서 인물)',mickey:'둥근 검은 귀와 큰 눈의 클래식 만화풍 쥐(공식 디자인 복제 금지, 특징만 살린 단순한 자체 일러스트)',peter:'초록 모자와 깃털을 쓴 장난꾸러기 소년(단순한 자체 일러스트)',sherlock:'사냥모자·파이프·돋보기를 든 탐정',pooh:'꿀단지를 든 둥글고 노란 곰(단순한 자체 일러스트)'};
-const chDesc=c=>c=='random'?'장면마다 다음 5종 중 서로 다른 캐릭터를 섞어 사용: '+Object.values(CH).join(' / '):c=='free'?'이번 지문 주제에 어울리는 완전히 새로운 오리지널 캐릭터를 직접 창작해 모든 장면에 일관되게 등장시킴':CH[c];
-async function make(){const y=+$('#my').value,g=+$('#mg').value,m=+$('#mm').value,no=+$('#mn').value;
-const p=P.find(p=>p.y==y&&p.g==g&&p.m==m&&p.no==no);if(!p)return alert('보관함에 없는 지문입니다. 먼저 지문 탭에서 저장하세요.');
-const ch=$('#mc').value,opts={sc:$('#o_sc').checked,vo:$('#o_vo').checked,gr:$('#o_gr').checked,ch:$('#o_ch').checked,qz:$('#o_qz').checked};
-$('#gb').disabled=true;$('#st').textContent='AI가 분석하고 그림을 그리는 중입니다. 30초~1분 걸립니다.';
-const pr=`너는 대한민국 최고의 영어 일타강사이자 영어교육학 교수다. 평가원 출제 원리와 논리 구조 분석에 정통하다. 아래 고${g} ${m}월 모의고사 ${no}번 문제로 학습지 데이터를 JSON으로만 출력하라. 독자는 여고생이며 말투는 따뜻하고 전문적이다.
-스키마: {"type":"문제 유형","lv":난이도1~5,"min":예상 풀이 분,"topic":"소재","title":"영어 제목 / 한글 제목","subject":"주제","gist":"요지","summary":"핵심 요약 2문장","flow":[{"t":"단계명","d":"한 줄 설명"}],"sentences":[{"n":1,"en":"","ko":"해석","hl":["핵심 구절(en의 부분 문자열)"]}],"conn":["지문 속 연결어"],"eye":{"intent":"출제 의도","evidence":"정답 근거 문장 번호와 이유","strategy":["풀이 단계"]},"chars":{"t":"선생님 캐릭터 이름","s":"학생 캐릭터 이름"},"steps":[{"title":"역할: 소제목","who":"t 또는 s","say":"대화체 설명 1~2문장","svg":"<svg viewBox='0 0 160 130' xmlns='http://www.w3.org/2000/svg'>...</svg>"}],"vs":{"title":"","good":"","bad":""},"keys":["시험 직전 핵심"],"syntax":[{"en":"끊어읽기(/) 표시한 문장","st":"[S]{V}(O) 구조","pt":"문법 포인트","ko":"해석"}],"vocab":[{"i":1~3,"w":"","pos":"","m":"뜻","ex":"지문 속 연어·예문","syn":"유의어·반의어·파생어"}],"grammar":[{"p":"","e":""}],"choices":[{"n":1,"type":"함정 유형","why":"정답/오답 이유"}],"qa":[{"q":"핵심어를 _____로 바꾼 문장","h":"힌트","a":"정답"}],"qb":[{"q":"영어 문장","a":"모범 해석"}],"qc":{"q":"요약문 (A)(B) 빈칸","a":"정답"},"mcq":[{"q":"수능형 변형 문제","o":["① ..","② ..","③ ..","④ ..","⑤ .."],"a":"정답 번호","why":"해설"}],"cheer":"${NK()}에게 주는 짧고 따뜻한 응원 한마디"}
-개수: flow 3~4, steps 정확히 4, keys 3, syntax 3, vocab 6~8, grammar 3, qa 3, qb 2, mcq 2. sentences에는 지문 본문 전체를 빠짐없이 넣는다(발문·선지 제외). choices는 원문에 선지가 없으면 빈 배열. svg 규칙: 지브리 분위기의 수채화 느낌(하늘 그라데이션·구름·언덕·나무) 배경에 작은 캐릭터를 두고, 장면마다 구도·표정·소품을 다르게 자유롭게 창작하며 글자는 매우 짧게, 속성은 작은따옴표만, script 금지. 캐릭터: ${chDesc(ch)}. 선생님은 안경·지시봉 같은 소품을 들고 학생은 같은 캐릭터의 다른 색으로 그린다.
+
+async function make(){
+  const y=+$('#my').value,g=+$('#mg').value,m=+$('#mm').value,no=+$('#mn').value;
+  const p=P.find(p=>p.y==y&&p.g==g&&p.m==m&&p.no==no);
+  if(!p)return alert('보관함에 없는 지문입니다. 먼저 지문 탭에서 저장하세요.');
+  const ch=$('#mc').value,opts={sc:$('#o_sc').checked,vo:$('#o_vo').checked,gr:$('#o_gr').checked,ch:$('#o_ch').checked,qz:$('#o_qz').checked};
+  $('#gb').disabled=true;$('#st').textContent='AI가 지문을 분석하고 4분할 손그림 스케치노트 프롬프트를 설계 중입니다... (약 20~30초)';
+
+  const pr=`너는 대한민국 최고의 수능 영어 일타강사이자 비주얼 스케치노트(Sketchnote) 인포그래픽 디렉터다. 아래 고${g} ${m}월 모의고사 ${no}번 지문을 분석하여 학습지 데이터를 JSON으로만 출력하라.
+스키마:
+{
+  "type":"문제 유형", "lv":난이도1~5, "min":예상 풀이 분, "topic":"소재", "title":"영어 제목 / 한글 제목", "subject":"주제", "gist":"요지", "summary":"핵심 요약 2문장",
+  "flow":[{"t":"단계명","d":"한 줄 설명"}],
+  "sentences":[{"n":1,"en":"","ko":"해석","hl":["핵심 구절(en의 부분 문자열)"]}],
+  "conn":["지문 속 연결어"],
+  "eye":{"intent":"출제 의도","evidence":"정답 근거 문장 번호와 이유","strategy":["풀이 단계"]},
+  "customChar":"선택된 캐릭터 설정(${CHAR_MAP[ch]})을 바탕으로 이 지문 주제에 어울리는 구체적인 캐릭터 외형과 소품 묘사 1문장",
+  "steps":[
+    {
+      "head":"1 [1~2번 문장] 도입: 핵심 소제목",
+      "scene":"캐릭터가 물음표(?), 말풍선, 화살표(→), 미니 아이콘과 함께 겪는 상황극이나 전후 과정을 구체적으로 묘사 (그림 생성 AI가 보고 그릴 수 있도록 시각적으로 자세히 서술)",
+      "lines":["손글씨로 들어갈 핵심 도식 문구 1 (영어 핵심어 병기, 예: 후각 전용 단어 부재 X -> 원인 물질(source) 빌려 표현)","손글씨로 들어갈 핵심 도식 문구 2 (말풍선 대사 포함)"],
+      "hl":["노란색/분홍색 형광펜 칠할 핵심 키워드 2~3개"]
+    }
+  ],
+  "vs":{"title":"","good":"","bad":""},
+  "keys":["시험 직전 핵심"],
+  "syntax":[{"en":"끊어읽기(/) 표시한 문장","st":"[S]{V}(O) 구조","pt":"문법 포인트","ko":"해석"}],
+  "vocab":[{"i":1~3,"w":"","pos":"","m":"뜻","ex":"지문 속 연어·예문","syn":"유의어·반의어·파생어"}],
+  "grammar":[{"p":"","e":""}],
+  "choices":[{"n":1,"type":"함정 유형","why":"정답/오답 이유"}],
+  "qa":[{"q":"핵심어를 _____로 바꾼 문장","h":"힌트","a":"정답"}],
+  "qb":[{"q":"영어 문장","a":"모범 해석"}],
+  "qc":{"q":"요약문 (A)(B) 빈칸","a":"정답"},
+  "mcq":[{"q":"수능형 변형 문제","o":["① ..","② ..","③ ..","④ ..","⑤ .."],"a":"정답 번호","why":"해설"}],
+  "cheer":"${NK()}에게 주는 짧고 따뜻한 응원 한마디"
+}
+규칙:
+- steps는 반드시 정확히 4개로 구성하라:
+  1번(좌상): [도입/배경] 문장 번호 명시 + 핵심 문제 제기 요약 + 캐릭터 상황극 + 해결책/부연 설명
+  2번(좌하): [현상 분석/실험 제시] 문장 번호 명시 + 구체적 사례나 실험 전후 과정을 화살표(→)로 비교하는 캐릭터 일러스트와 말풍선("응? 모르겠어!" 등)
+  3번(우상): [반전 및 대조] 문장 번호 명시 + 대조되는 두 개념을 'A vs B' 구도로 나누어 O/X 행동으로 비교하는 캐릭터 그림
+  4번(우하): [결론: ★핵심 요지] 문장 번호 명시 + 중심 아이콘(뇌, 본질 등)과 두 갈래 화살표(→)로 핵심 요지를 '완벽 구비 vs 장비 미흡'처럼 선명하게 대조하며 마무리
+- flow 3~4, keys 3, syntax 3, vocab 6~8, grammar 3, qa 3, qb 2, mcq 2. sentences에는 지문 본문 전체를 빠짐없이 넣는다.
 [원문]
 ${p.text}`;
-try{const d=await gem(pr);(d.steps||[]).forEach(s=>s.svg=clean(s.svg));cur={id:Date.now(),y,g,m,no,ch,d,opts};S.unshift(cur);saveS();$('#st').textContent='';show()}
-catch(e){$('#st').textContent='실패: '+e.message+' (다시 시도해 보세요)'}finally{$('#gb').disabled=false}}
-function saveS(){S=S.slice(0,30);while(S.length){try{localStorage.setItem('pp_s',JSON.stringify(S));return}catch{S.pop()}}}
 
-/* 학습지 */
+  try{
+    const d=await gem(pr);
+    d.sketchnotePrompt = buildSketchnotePrompt(d, ch);
+    cur={id:Date.now(),y,g,m,no,ch,d,opts};
+    S.unshift(cur);saveS();$('#st').textContent='';show();
+  }catch(e){
+    $('#st').textContent='실패: '+e.message+' (다시 시도해 보세요)';
+  }finally{$('#gb').disabled=false}
+}
+
+function saveS(){S=S.slice(0,20);while(S.length){try{localStorage.setItem('pp_s',JSON.stringify(S));return}catch{S.pop()}}}
+
+/* 프롬프트 복사 및 완성된 스케치노트 이미지 첨부 기능 */
+async function copyPrompt(){
+  const ta = $('#sn_pr');
+  if(!ta) return;
+  try{
+    await navigator.clipboard.writeText(ta.value);
+    alert('✨ 스케치노트 프롬프트가 복사되었습니다!\n나노바나나(Gemini 채팅창 등)에 붙여넣어 이미지를 생성하세요.');
+  }catch{
+    ta.select();
+    document.execCommand('copy');
+    alert('✨ 프롬프트가 복사되었습니다!');
+  }
+}
+
+function attachImg(file){
+  if(!file || !cur) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      // 로컬스토리지 용량 절약을 위해 고화질 유지 선에서 리사이즈 압축 (최대 가로 1400px)
+      const canvas = document.createElement('canvas');
+      const maxW = 1400;
+      let w = img.width, h = img.height;
+      if(w > maxW){ h = Math.round(h * maxW / w); w = maxW; }
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      cur.d.sketchImg = canvas.toDataURL('image/jpeg', 0.85);
+      saveS();
+      renderSL();
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeImg(){
+  if(!cur || !confirm('첨부한 스케치노트 이미지를 지울까요?')) return;
+  delete cur.d.sketchImg;
+  saveS();
+  renderSL();
+}
+
+// 화면에서 Ctrl+V로 이미지 바로 붙여넣기 지원
+window.addEventListener('paste', e => {
+  if(!cur || $('#res').hidden) return;
+  const items = e.clipboardData?.items || [];
+  for(const it of items){
+    if(it.type.startsWith('image/')){
+      attachImg(it.getAsFile());
+      break;
+    }
+  }
+});
+
+/* 학습지 렌더링 */
 let D=LS('pp_d',{});const dstr=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),pk=s=>`${s.y}-${s.g}-${s.m}-${s.no}`;
 function fin(){const k=pk(cur);D[k]?delete D[k]:D[k]=dstr(new Date());SV('pp_d',D);renderSL();sts()}
 function sts(){const ds=new Set(Object.values(D)),n=Object.keys(D).length;let d=new Date(),c=0;if(!ds.has(dstr(d)))d.setDate(d.getDate()-1);while(ds.has(dstr(d))){c++;d.setDate(d.getDate()-1)}$('#stat').textContent=`🔥 ${c}일 연속 · 🌲 나의 숲 ${n}그루`}
@@ -161,30 +338,69 @@ function openS(id){cur=S.find(s=>s.id==id);show()}
 function delS(id){if(confirm('삭제할까요?')){S=S.filter(s=>s.id!=id);if(cur&&cur.id==id){cur=null;$('#sheet').innerHTML=''}saveS();renderSL()}}
 function show(){tab('res')}
 const star=n=>'★'.repeat(Math.max(0,Math.min(5,n|0))),L=(a,f)=>(a||[]).map(f).join(''),PH=(g,t,u)=>`<div class="ph"><span class="tag">${g}</span><h2>${t}</h2><span class="sb">${u}</span></div>`;
-function render(s){const nk=esc(NK()),d=s.d,o=s.opts,T=`${s.y} 고${s.g} ${s.m}월 ${s.no}번`;
-const en=L(d.sentences,x=>{let t=esc(x.en);(x.hl||[]).forEach(p=>{const q=esc(p);if(q&&t.includes(q))t=t.replace(q,()=>'<mark>'+q+'</mark>')});(d.conn||[]).forEach(c=>{const w=String(c).replace(/[^\w ]/g,'').trim();if(w)t=t.replace(new RegExp('\\b'+w+'\\b','i'),m=>'<u class="cn">'+m+'</u>')});return`<sup>${x.n}</sup>${t} `});
-const p1=`<div class="pg">${PH('🍃 '+nk+'의 독해 전략','원문 심층 독해',T)}<div class="chips"><span>${esc(d.type)}</span><span>난이도 ${star(d.lv)}</span><span>⏱ ${esc(d.min)}분</span></div>
+
+function hlText(str, hls){
+  let t = esc(str);
+  (hls||[]).forEach((h, idx) => {
+    const q = esc(h);
+    if(q && t.includes(q)){
+      const cls = idx % 2 === 0 ? 'hl-y' : 'hl-p';
+      t = t.replace(q, `<span class="${cls}">${q}</span>`);
+    }
+  });
+  return t;
+}
+
+function render(s){
+  const nk=esc(NK()),d=s.d,o=s.opts,T=`${s.y} 고${s.g} ${s.m}월 ${s.no}번`;
+  if(!d.sketchnotePrompt) d.sketchnotePrompt = buildSketchnotePrompt(d, s.ch || 'stick');
+
+  const en=L(d.sentences,x=>{let t=esc(x.en);(x.hl||[]).forEach(p=>{const q=esc(p);if(q&&t.includes(q))t=t.replace(q,()=>'<mark>'+q+'</mark>')});(d.conn||[]).forEach(c=>{const w=String(c).replace(/[^\w ]/g,'').trim();if(w)t=t.replace(new RegExp('\\b'+w+'\\b','i'),m=>'<u class="cn">'+m+'</u>')});return`<sup>${x.n}</sup>${t} `});
+  
+  const p1=`<div class="pg">${PH('🍃 '+nk+'의 독해 전략','원문 심층 독해',T)}<div class="chips"><span>${esc(d.type)}</span><span>난이도 ${star(d.lv)}</span><span>⏱ ${esc(d.min)}분</span></div>
 <div class="g2"><div class="ps"><h5>원문 · 핵심 구문 하이라이트</h5><p class="en">${en}</p></div><div class="cds">${L([['소재','co',d.topic],['제목','su',d.title],['주제','sk',d.subject],['요지','mo',d.gist],['핵심 요약','fo',d.summary]],([k,c,v])=>`<div class="cd ${c}"><b>[${k}]</b> ${esc(v)}</div>`)}</div></div>
 <div class="v">논리 전개 흐름도</div><div class="fl">${L(d.flow,(f,i)=>`<div class="fb"><b>Step ${i+1}. ${esc(f.t)}</b><small>${esc(f.d)}</small></div>`)}</div>
 <div class="v">해석</div><div class="ko">${L(d.sentences,x=>`<sup>${x.n}</sup>${esc(x.ko)} `)}</div>
 <div class="eye"><b>🔎 출제자의 눈</b><div>${esc(d.eye?.intent)}</div><div>정답 근거: ${esc(d.eye?.evidence)}</div><ol>${L(d.eye?.strategy,x=>`<li>${esc(x)}</li>`)}</ol></div></div>`;
-const p2=o.sc&&d.steps?.length?`<div class="pg">${PH('🌿 시각적 개념정리','한눈에 들어오는 핵심 정리',T)}<div class="ban">${esc(d.chars?.t)} 선생님 & ${esc(d.chars?.s)}의 1분 핵심 과외</div>
-<div class="stg">${L(d.steps,(x,i)=>`<div class="st"><span class="chip">Step ${i+1}</span><b>${esc(x.title)}</b><div class="stb">${x.svg||''}<div class="bub"><b>${esc(x.who=='s'?d.chars?.s:d.chars?.t)}:</b> ${esc(x.say)}</div></div><button class="g np" onclick="redraw(${i},this)">🔄 그림 다시</button></div>`)}</div>
-<div class="v">직관 비교 · ${esc(d.vs?.title)}</div><div class="vs"><div class="ok">✔ ${esc(d.vs?.good)}</div><b>VS</b><div class="no">✘ ${esc(d.vs?.bad)}</div></div>
-<div class="kp"><b>💡 시험 직전 Key Point</b><ul>${L(d.keys,k=>`<li>${esc(k)}</li>`)}</ul></div></div>`:'';
-let a='';
-if(o.gr&&d.syntax?.length)a+='<div class="v">핵심 구문 뽀개기</div>'+L(d.syntax,x=>`<div class="sx"><div class="en">${esc(x.en)}</div><code>${esc(x.st)}</code><div>💡 ${esc(x.pt)}</div><div class="ko">${esc(x.ko)}</div></div>`)+(d.grammar?.length?'<div class="v">어법 포인트</div>'+L(d.grammar,x=>`<div class="sen"><b>${esc(x.p)}</b> ${esc(x.e)}</div>`):'');
-if(o.vo&&d.vocab?.length)a+=`<div class="v">${nk}의 어휘 노트</div><table><tr><th>중요도</th><th>단어</th><th>뜻</th><th>연어·예문</th><th>유의어·파생어</th></tr>`+L(d.vocab,x=>`<tr><td class="s3">${star(x.i)}</td><td><b>${esc(x.w)}</b> <small>${esc(x.pos)}</small></td><td>${esc(x.m)}</td><td>${esc(x.ex)}</td><td>${esc(x.syn)}</td></tr>`)+'</table>';
-if(o.ch&&d.choices?.length)a+='<div class="v">오답 함정 분석</div>'+L(d.choices,x=>`<div class="sen"><b>${num(x.n)}</b> <span class="tg">${esc(x.type)}</span> ${esc(x.why)}</div>`);
-if(o.qz)a+='<div class="v">셀프 테스트</div><b>[A] 빈칸 어휘 채우기</b>'+L(d.qa,(x,i)=>`<div class="sen">(${i+1}) ${esc(x.q)} <span class="hint">[힌트: ${esc(x.h)}]</span></div>`)+'<b>[B] 한 줄 해석 연습</b>'+L(d.qb,(x,i)=>`<div class="sen">(${i+1}) ${esc(x.q)}</div><div class="ln"></div>`)+(d.qc?`<b>[C] 서술형 대비 요약문</b><div class="sen">${esc(d.qc.q)}</div>`:'')+'<b>[D] 수능형 변형문제</b>'+L(d.mcq,(x,i)=>`<div class="sen">(${i+1}) ${esc(x.q)}<br>${L(x.o,t=>esc(t)+'&nbsp;&nbsp;')}</div>`);
-a+='<div class="ck">☐ 소리 내어 읽기 &nbsp;☐ 끊어읽기 표시 &nbsp;☐ 어휘 암기 &nbsp;☐ 셀프 테스트 &nbsp;☐ 오답 정리</div>'+(d.cheer?`<div class="cheer">${esc(d.cheer)}</div>`:'');
-const p3=`<div class="pg">${PH('🍂 구문·어휘·테스트',nk+'의 실전 노트',T)}${a}</div>`;
-const p4=o.qz?`<div class="pg">${PH('🌙 정답·해설','풀고 나서 채점하세요',T)}<b>[A]</b>`+L(d.qa,(x,i)=>` (${i+1}) ${esc(x.a)}`)+'<br><b>[B]</b>'+L(d.qb,(x,i)=>`<div class="sen">(${i+1}) ${esc(x.a)}</div>`)+(d.qc?`<b>[C]</b> ${esc(d.qc.a)}<br>`:'')+'<b>[D]</b>'+L(d.mcq,(x,i)=>`<div class="sen">(${i+1}) 정답 ${esc(x.a)} — ${esc(x.why)}</div>`)+'</div>':'';
-return p1+p2+p3+p4}
-async function redraw(i,b){const x=cur.d.steps[i];b.disabled=true;b.textContent='그리는 중…';
-try{const r=await gem(`다음 장면에 맞춰 이전과 다른 구도·표정·소품의 새 SVG를 {"svg":"..."} JSON으로만 출력하라. viewBox 0 0 160 130, 속성은 작은따옴표만, script 금지. 지브리 분위기의 수채화 느낌 배경(하늘 그라데이션·구름·언덕)에 작은 캐릭터. 캐릭터: ${chDesc(cur.ch)}. 장면: ${x.title} / ${x.say}`);const v=clean(r.svg);if(v)x.svg=v;saveS()}catch(e){alert('실패: '+e.message)}
-renderSL()}
-async function share(){const d=cur.d,t=`${NK()}의 ${lab(cur)} 지문분석\n\n소재: ${d.topic}\n주제: ${d.subject}\n요지: ${d.gist}\n요약: ${d.summary}\n흐름: ${d.flow}\n\n`+(d.sentences||[]).map(x=>`${num(x.n)} ${x.en}\n→ ${x.ko}`).join('\n');
+
+  // 2페이지: 스케치노트 프롬프트 스튜디오 + 4분할 콘티 / 완성 이미지 뷰어
+  const p2=o.sc&&d.steps?.length?`<div class="pg">${PH('🌿 비주얼 스케치노트','한눈에 들어오는 4분할 손그림 노트',T)}
+  <div class="pr-box np">
+    <div class="pr-head">
+      <b>🎨 나노바나나용 스케치노트 프롬프트 (수정 가능)</b>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <button class="pk" onclick="copyPrompt()">📋 프롬프트 복사하기</button>
+        <label class="btn g">🖼️ 완성한 스케치노트 이미지 넣기<input type="file" accept="image/*" hidden onchange="attachImg(this.files[0]);this.value=''"></label>
+        ${d.sketchImg?`<button class="g" onclick="removeImg()">🗑 이미지 제거</button>`:''}
+      </div>
+    </div>
+    <textarea id="sn_pr" class="pr-ta" oninput="cur.d.sketchnotePrompt=this.value;saveS()">${esc(d.sketchnotePrompt)}</textarea>
+    <small style="color:#666;display:block;margin-top:4px">💡 <b>사용 팁:</b> [프롬프트 복사하기]를 눌러 나노바나나(채팅창)에서 이미지를 생성한 뒤, 이미지를 복사해 이 화면에서 <b>Ctrl+V</b>를 누르거나 [완성한 스케치노트 이미지 넣기]로 등록하면 아래에 들어갑니다(인쇄 시 이 박스는 숨겨지고 깔끔하게 출력됩니다).</small>
+  </div>
+
+  ${d.sketchImg ? `<div class="sn-img-wrap"><img src="${d.sketchImg}" alt="비주얼 스케치노트"></div>` : `
+  <div class="ban">✏️ 4분할 스케치노트 구성안 미리보기 ☆♡</div>
+  <div class="stg">${L(d.steps,(x,i)=>`<div class="st">
+    <div class="st-hd">${esc(x.head || `Step ${i+1}`)}</div>
+    <div class="st-sc">🎬 <b>그림 연출:</b> ${esc(x.scene)}</div>
+    <div class="st-tx">${L(x.lines, l=>`<div>• ${hlText(l, x.hl)}</div>`)}</div>
+  </div>`)}</div>`}
+
+  <div class="v">직관 비교 · ${esc(d.vs?.title)}</div><div class="vs"><div class="ok">✔ ${esc(d.vs?.good)}</div><b>VS</b><div class="no">✘ ${esc(d.vs?.bad)}</div></div>
+  <div class="kp"><b>💡 시험 직전 Key Point</b><ul>${L(d.keys,k=>`<li>${esc(k)}</li>`)}</ul></div></div>`:'';
+
+  let a='';
+  if(o.gr&&d.syntax?.length)a+='<div class="v">핵심 구문 뽀개기</div>'+L(d.syntax,x=>`<div class="sx"><div class="en">${esc(x.en)}</div><code>${esc(x.st)}</code><div>💡 ${esc(x.pt)}</div><div class="ko">${esc(x.ko)}</div></div>`)+(d.grammar?.length?'<div class="v">어법 포인트</div>'+L(d.grammar,x=>`<div class="sen"><b>${esc(x.p)}</b> ${esc(x.e)}</div>`):'');
+  if(o.vo&&d.vocab?.length)a+=`<div class="v">${nk}의 어휘 노트</div><table><tr><th>중요도</th><th>단어</th><th>뜻</th><th>연어·예문</th><th>유의어·파생어</th></tr>`+L(d.vocab,x=>`<tr><td class="s3">${star(x.i)}</td><td><b>${esc(x.w)}</b> <small>${esc(x.pos)}</small></td><td>${esc(x.m)}</td><td>${esc(x.ex)}</td><td>${esc(x.syn)}</td></tr>`)+'</table>';
+  if(o.ch&&d.choices?.length)a+='<div class="v">오답 함정 분석</div>'+L(d.choices,x=>`<div class="sen"><b>${num(x.n)}</b> <span class="tg">${esc(x.type)}</span> ${esc(x.why)}</div>`);
+  if(o.qz)a+='<div class="v">셀프 테스트</div><b>[A] 빈칸 어휘 채우기</b>'+L(d.qa,(x,i)=>`<div class="sen">(${i+1}) ${esc(x.q)} <span class="hint">[힌트: ${esc(x.h)}]</span></div>`)+'<b>[B] 한 줄 해석 연습</b>'+L(d.qb,(x,i)=>`<div class="sen">(${i+1}) ${esc(x.q)}</div><div class="ln"></div>`)+(d.qc?`<b>[C] 서술형 대비 요약문</b><div class="sen">${esc(d.qc.q)}</div>`:'')+'<b>[D] 수능형 변형문제</b>'+L(d.mcq,(x,i)=>`<div class="sen">(${i+1}) ${esc(x.q)}<br>${L(x.o,t=>esc(t)+'&nbsp;&nbsp;')}</div>`);
+  a+='<div class="ck">☐ 소리 내어 읽기 &nbsp;☐ 끊어읽기 표시 &nbsp;☐ 어휘 암기 &nbsp;☐ 셀프 테스트 &nbsp;☐ 오답 정리</div>'+(d.cheer?`<div class="cheer">${esc(d.cheer)}</div>`:'');
+  const p3=`<div class="pg">${PH('🍂 구문·어휘·테스트',nk+'의 실전 노트',T)}${a}</div>`;
+  const p4=o.qz?`<div class="pg">${PH('🌙 정답·해설','풀고 나서 채점하세요',T)}<b>[A]</b>`+L(d.qa,(x,i)=>` (${i+1}) ${esc(x.a)}`)+'<br><b>[B]</b>'+L(d.qb,(x,i)=>`<div class="sen">(${i+1}) ${esc(x.a)}</div>`)+(d.qc?`<b>[C]</b> ${esc(d.qc.a)}<br>`:'')+'<b>[D]</b>'+L(d.mcq,(x,i)=>`<div class="sen">(${i+1}) 정답 ${esc(x.a)} — ${esc(x.why)}</div>`)+'</div>':'';
+  return p1+p2+p3+p4;
+}
+
+async function share(){const d=cur.d,t=`${NK()}의 ${lab(cur)} 지문분석\n\n소재: ${d.topic}\n주제: ${d.subject}\n요지: ${d.gist}\n요약: ${d.summary}\n\n[스케치노트 프롬프트]\n${d.sketchnotePrompt}`;
 if(navigator.share){try{await navigator.share({title:lab(cur)+' 지문분석',text:t})}catch{}}else{try{await navigator.clipboard.writeText(t);alert('내용을 복사했습니다. 카카오톡에 붙여넣으세요.')}catch{alert('이 브라우저는 공유를 지원하지 않습니다.')}}}
 ff();ttl();sts();tab('lib');
 </script></body></html>
