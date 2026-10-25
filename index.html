@@ -1,62 +1,54 @@
 <!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#e8467c"><title>지문분석 학습지</title>
 <style>
-:root{--p:#e8467c;--bg:#fff7fa;--b:#f3c6d6;--t:#222}
-*{box-sizing:border-box}
-body{margin:0;font:15px/1.6 system-ui,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;background:var(--bg);color:var(--t);padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-nav{position:sticky;top:0;z-index:5;display:flex;background:var(--p);padding-top:env(safe-area-inset-top)}
-nav button{flex:1;background:none;border:0;color:#fff;padding:12px 4px;font:inherit;font-weight:700}
-nav button.on{background:#c92f65}
-section{max-width:760px;margin:0 auto;padding:10px}
-.card{background:#fff;border:1px solid var(--b);border-radius:12px;padding:12px;margin-bottom:12px}
-h3{margin:0 0 8px;color:var(--p)}
-input,select,textarea{font:inherit;padding:8px;border:1px solid #d9b3c3;border-radius:8px;width:100%;background:#fff}
+:root{--ink:#2f3e46;--fo:#3f6b4f;--ln:#d8cfb8;--co:#d9825b;--su:#e9b44c;--sk:#7fb5cc;--mo:#8fae7a}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:#f4efe0;color:var(--ink);font:15px/1.65 "Gowun Dodum",system-ui,"Apple SD Gothic Neo",sans-serif}
+h2,h3,.top,.v,.tag,.ban,.chip{font-family:"Gowun Batang",serif}
+.top{padding:calc(env(safe-area-inset-top) + 12px) 14px 10px;text-align:center;background:linear-gradient(#bfdde8,#f4efe0)}
+#ttl{font-size:22px;font-weight:700;color:var(--fo)}#stat{font-size:12.5px;color:#6b705c}
+nav{position:sticky;top:0;z-index:5;display:flex;background:#f4efe0;border-bottom:1px solid var(--ln)}
+nav button{flex:1;background:none;border:0;border-bottom:3px solid transparent;border-radius:0;padding:11px 2px;color:#6b705c}
+nav button.on{color:var(--fo);border-color:var(--fo)}
+section{max-width:820px;margin:0 auto;padding:10px}
+.card{background:#fffdf6;border:1px solid var(--ln);border-radius:14px;padding:12px;margin-bottom:12px}
+h3{margin:0 0 8px;color:var(--fo);font-size:18px}
+input,select,textarea{font:inherit;padding:8px;border:1px solid var(--ln);border-radius:10px;width:100%;background:#fff}
 .row{display:flex;gap:6px;margin:6px 0;flex-wrap:wrap}.row>*{flex:1;min-width:70px}
-button,.btn{font:inherit;background:var(--p);color:#fff;border:0;border-radius:8px;padding:9px 12px;font-weight:700;text-align:center;cursor:pointer;display:inline-block}
-button.g,.btn.g{background:#fff;color:var(--p);border:1.5px solid var(--p)}
-button:disabled{opacity:.5}
+button,.btn{font:700 14px "Gowun Dodum",sans-serif;background:var(--fo);color:#fff;border:0;border-radius:10px;padding:9px 14px;cursor:pointer;display:inline-block;text-align:center}
+button.g,.btn.g{background:#fff;color:var(--fo);border:1.5px solid var(--fo)}button:disabled{opacity:.5}
 .chk label{display:inline-block;margin:4px 10px 4px 0}.chk input{width:auto}
-.it{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:8px 0;border-top:1px dashed var(--b)}
-.it small{color:#777;display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:55vw}
-.it .a{display:flex;gap:4px}.it button{padding:5px 9px}
-.sh{background:#fff;border:1px solid var(--b);border-radius:12px;padding:14px;margin:0 0 12px}
-.sh h1{font-size:21px;color:var(--p);margin:0 0 4px}
-.v{font-weight:800;border-bottom:1px dashed #bbb;margin:14px 0 4px}.v:before{content:"✔ ";color:var(--p)}
-.sen{margin:5px 0}.sen b{color:var(--p)}.ko{color:#555;font-size:13.5px}.nt{color:#c92f65;font-size:12.5px}
-mark{background:#fff176;padding:0 1px}
-.sc{border:2.5px solid #f48fb1;border-radius:14px;padding:8px;margin:10px 0;break-inside:avoid}
-.sc.k{border-color:#e8467c;background:#fff0f5}
-.sc h4{margin:0 0 4px}.sc svg{width:100%;height:auto;background:#fffdf5;border-radius:8px}
-table{border-collapse:collapse;width:100%;font-size:14px}td{border-bottom:1px solid #eee;padding:3px 6px}
-.qa{color:#999;font-size:13px}
-@media print{nav,.np,section:not(#res){display:none!important}body{background:#fff}.sh{border:0;padding:0}@page{margin:10mm}}
-body{background:#fff4f9 radial-gradient(#ffd3e6 1.4px,transparent 1.6px) 0 0/18px 18px}
-.top,nav button,button,.btn,h3,.sh h1,.v,.sc h4,.sen b,.cheer,.by{font-family:"Jua","Gamja Flower","Apple SD Gothic Neo",sans-serif;font-weight:400}
-.top{text-align:center;padding:calc(env(safe-area-inset-top) + 10px) 10px 6px;font-size:25px;color:#ff4f93;background:#fff;text-shadow:2px 2px 0 #ffe0ee}
-nav{background:#fff;padding:6px;gap:6px;border-bottom:3px dotted #ffb3d1}
-nav button{background:#ffe3ef;color:#ff4f93;border-radius:999px;padding:9px 2px;font-size:15px}
-nav button.on{background:#ff6fa5;color:#fff;box-shadow:0 3px 0 #d94c82}
-button,.btn{background:#ff6fa5;border-radius:999px;box-shadow:0 3px 0 #d94c82;padding:9px 16px}
-button.g,.btn.g{background:#fff;color:#ff4f93;border:2px solid #ff9cc2;box-shadow:0 3px 0 #ffc2da}
-button:active,.btn:active{transform:translateY(2px);box-shadow:none}
-.card{border:2px dashed #ffa9cc;border-radius:22px;box-shadow:5px 5px 0 #ffe0ee}
-h3{font-size:19px;color:#ff4f93}h3:before{content:"🍓 "}
-input,select,textarea{border:2px solid #ffc2da;border-radius:14px}
-.sh{position:relative;border:3px solid #ffa9cc;border-radius:26px;box-shadow:6px 6px 0 #ffe0ee;margin-top:16px}
-.sh:before{content:"";position:absolute;top:-12px;left:50%;width:120px;height:22px;margin-left:-60px;background:repeating-linear-gradient(45deg,#ffc2da 0 8px,#fff 8px 16px);transform:rotate(-2deg)}
-.by{color:#b07cff;font-size:15px}.sh h1{font-size:25px;color:#ff4f93;font-weight:400}
-.v{display:inline-block;font-size:17px;color:#7a4bd8;background:#f1e8ff;border:0;border-radius:999px;padding:3px 14px;margin:16px 0 6px}.v:before{content:"✨ ";color:inherit}
-.sc{border:3px dashed #ff9cc2;border-radius:22px}.sc.k{background:#fff0f7;border:3px solid #ff6fa5}.sc h4{color:#d63b7e}
-mark{background:linear-gradient(transparent 40%,#fff176 40%);border-radius:3px}
-.cheer{margin-top:16px;padding:12px;border-radius:18px;background:#fff0f7;border:2px dashed #ff9cc2;text-align:center;color:#d63b7e}
-.v{display:block;width:fit-content;break-after:avoid}
-.scs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.sc{margin:0;padding:6px;border-radius:16px}.sc.k{grid-column:1/-1}
-.sc svg{max-height:165px}.sc h4{font-size:13px}.sc>div{font-size:12.5px;line-height:1.4}.sc button{padding:3px 8px;font-size:12px;margin-top:4px}
-.sen,.sc,tr,.cheer{break-inside:avoid}
-.pb{break-before:page;page-break-before:always}
-@media print{@page{size:A4;margin:10mm}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}body{background:#fff!important}.top{display:none!important}.sh{border:0!important;box-shadow:none!important}.sh:before{display:none}}
-</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&display=swap"></head><body>
-<div class="top" id="ttl">🎀 지문 노트 ✨</div>
+details{border-top:1px solid var(--ln)}summary{padding:9px 2px;font-weight:700;cursor:pointer;color:var(--fo)}summary small{color:#888;font-weight:400}
+.it{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:6px 0}
+.it small{color:#777;display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:40vw}.it .a{display:flex;gap:4px}.it button{padding:4px 8px;font-size:12.5px}
+.pg{background:#fffdf6;border:1px solid var(--ln);border-radius:14px;padding:16px;margin-bottom:14px}
+.ph{display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--fo);padding-bottom:6px;margin-bottom:10px;flex-wrap:wrap}
+.ph h2{margin:0;font-size:21px;flex:1}.tag{border:1.5px solid var(--fo);color:var(--fo);border-radius:99px;padding:1px 10px;font-size:12.5px}.sb{font-size:12px;color:#888}
+.chips span{display:inline-block;background:#e8efd9;color:var(--fo);border-radius:99px;padding:1px 10px;margin:0 4px 6px 0;font-size:13px}
+.g2{display:grid;grid-template-columns:3fr 2fr;gap:10px}
+.ps{background:#fff6d9;border:2px solid var(--su);border-radius:14px;padding:10px}.ps h5{margin:0 0 4px;font-size:12.5px;color:#9a7412}
+.en{font:15px/1.9 Georgia,"Gowun Batang",serif;margin:0}sup{color:var(--co);font-weight:700;margin-right:2px;font-size:10px}
+mark{background:linear-gradient(transparent 55%,#f6c85f 55%)}.cn{color:var(--co);text-decoration:underline wavy}
+.cds{display:grid;gap:6px;align-content:start}.cd{border-left:5px solid;border-radius:8px;background:#fff;padding:5px 8px;font-size:13.5px}
+.cd.co{border-color:var(--co)}.cd.su{border-color:var(--su)}.cd.sk{border-color:var(--sk)}.cd.mo{border-color:var(--mo)}.cd.fo{border-color:var(--fo)}
+.v{display:block;width:fit-content;break-after:avoid;margin:14px 0 6px;font-weight:700;font-size:16px;color:var(--fo);border-bottom:2px solid var(--mo)}
+.fl{display:flex;gap:8px;flex-wrap:wrap}.fb{flex:1;min-width:110px;border:1.5px solid var(--sk);border-radius:10px;padding:6px 8px;background:#f1f8fb;font-size:13px}.fb small{display:block;color:#555}
+.ko{font-size:13.5px;color:#444}.eye,.kp,.ck,.cheer{border-radius:12px;padding:10px;margin-top:12px;font-size:13.5px}
+.eye{background:#eaf3e3;border:1.5px solid var(--mo)}.eye ol{margin:4px 0 0 18px;padding:0}
+.ban{background:linear-gradient(90deg,#3f6b4f,#6a9a7a);color:#fff;border-radius:99px;text-align:center;padding:7px;font-size:16px;margin-bottom:10px}
+.stg{display:grid;grid-template-columns:1fr 1fr;gap:8px}.st{border:1.5px solid var(--ln);border-radius:14px;padding:8px;background:#fff}
+.chip{background:var(--co);color:#fff;border-radius:99px;padding:0 9px;font-size:12px;margin-right:6px}
+.stb{display:flex;gap:6px;align-items:center;margin-top:4px}.stb svg{width:44%;height:auto;flex:none;border-radius:10px}.bub{background:#f4efe0;border-radius:10px;padding:6px 8px;font-size:12.5px;line-height:1.45}
+.vs{display:flex;gap:8px;align-items:center}.vs>div{flex:1;border-radius:10px;padding:8px;font-size:13.5px}.ok{background:#e4f1e0;border:1.5px solid var(--mo)}.no{background:#fbe6dd;border:1.5px solid var(--co)}
+.kp{background:#fff6d9;border:2px dashed var(--su)}.kp ul{margin:4px 0 0 16px;padding:0}
+.sx{border-left:4px solid var(--sk);background:#f1f8fb;border-radius:8px;padding:6px 10px;margin:6px 0;font-size:13.5px}.sx code{color:#b3532f;font-size:12.5px}
+table{border-collapse:collapse;width:100%;font-size:12.5px}th{background:#e8efd9;color:var(--fo)}th,td{border:1px solid var(--ln);padding:3px 6px}.s3{color:var(--su)}
+.sen{margin:5px 0;font-size:13.5px}.sen b{color:var(--co)}.tg{background:#fbe6dd;border-radius:6px;padding:0 6px;font-size:12px}.hint{color:#999}.ln{border-bottom:1px dotted #aaa;height:22px}
+.ck{background:#f1f8fb;border:1.5px solid var(--sk)}.cheer{text-align:center;background:#fbefe0;color:#9a4a22;font:19px "Nanum Pen Script","Gowun Dodum",cursive}
+.sen,.sx,tr,.st,.cd,.fb{break-inside:avoid}
+@media(max-width:560px){.g2,.stg{grid-template-columns:1fr}}
+@media print{.top,nav,.np,section:not(#res){display:none!important}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}body{background:#fff}.pg{border:0;padding:0;margin:0;border-radius:0;break-after:page}.pg:last-child{break-after:auto}@page{size:A4;margin:10mm}}
+</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap"></head><body>
+<div class="top"><div id="ttl"></div><div id="stat"></div></div>
 <nav><button onclick="tab('lib')">📚 지문</button><button onclick="tab('mk')">✏️ 만들기</button><button onclick="tab('res')">📄 학습지</button><button onclick="tab('set')">⚙️ 설정</button></nav>
 
 <section id="lib">
@@ -66,7 +58,7 @@ mark{background:linear-gradient(transparent 40%,#fff176 40%);border-radius:3px}
 <div class="row"><button onclick="savePassage()">저장</button><button class="g" onclick="clearForm()">새로 쓰기</button></div>
 <div class="row"><label class="btn g">📥 PDF·한글(hwpx)·TXT 일괄 등록<input type="file" accept=".pdf,.txt,.hwpx,.hwp" hidden onchange="importFile(this.files[0]);this.value=''"></label></div>
 <small>EBSi에서 받은 PDF를 고르면 위에서 선택한 연도·학년·월로 18~45번을 자동 분리해 저장합니다.</small></div>
-<div class="card"><h3>보관함</h3><input id="q" placeholder="검색 (번호·내용)" oninput="renderLib()"><div id="plist"></div>
+<div class="card"><h3>보관함</h3><div class="row"><select id="fy" onchange="LIM=60;renderLib()"></select><select id="fg" onchange="LIM=60;renderLib()"></select><select id="fm" onchange="LIM=60;renderLib()"></select><input id="fn" placeholder="번호 (31 또는 30-35)" oninput="LIM=60;renderLib()"></div><input id="q" placeholder="글자 검색" oninput="LIM=60;renderLib()"><div id="plist"></div>
 <div class="row"><button class="g" onclick="backup()">백업 저장</button><label class="btn g">백업 복원<input type="file" accept=".json" hidden onchange="restore(this.files[0]);this.value=''"></label></div></div>
 </section>
 
@@ -77,7 +69,7 @@ mark{background:linear-gradient(transparent 40%,#fff176 40%);border-radius:3px}
 <div class="row"><button id="gb" onclick="make()">✨ 학습지 생성</button></div><div id="st"></div></div></section>
 
 <section id="res" hidden><div class="card np"><h3>만든 학습지</h3><div id="sl"></div></div>
-<div class="row np" id="acts" hidden><button onclick="share()">📤 공유</button><button onclick="window.print()">🖨 PDF 저장·인쇄</button></div>
+<div class="row np" id="acts" hidden><button class="g" id="dn" onclick="fin()">🌱 학습 완료</button><button onclick="share()">📤 공유</button><button onclick="window.print()">🖨 PDF 저장·인쇄</button></div>
 <div id="sheet"></div></section>
 
 <section id="set" hidden><div class="card"><h3>설정</h3>
@@ -98,7 +90,7 @@ const clean=s=>{s=String(s||'');if(!/^\s*<svg/i.test(s))return'';return s.replac
 const num=n=>n>=1&&n<=20?String.fromCharCode(9311+n):'('+n+')';
 document.querySelectorAll('.sg').forEach(e=>{e.innerHTML=[1,2,3].map(g=>`<option value="${g}">고${g}</option>`).join('')});
 document.querySelectorAll('.sm').forEach(e=>{e.innerHTML=[3,4,5,6,7,9,10,11].map(m=>`<option value="${m}">${m}월</option>`).join('');e.value=9});
-$('#ck').value=cfg.key;$('#cm').value=cfg.model;$('#cn').value=NK();function ttl(){$('#ttl').textContent='🎀 '+NK()+'의 지문 노트 ✨'}
+$('#ck').value=cfg.key;$('#cm').value=cfg.model;$('#cn').value=NK();function ttl(){$('#ttl').textContent=NK()+'의 영어 서재'}
 function tab(n){document.querySelectorAll('section').forEach(e=>e.hidden=e.id!=n);document.querySelectorAll('nav button').forEach((b,i)=>b.classList.toggle('on',['lib','mk','res','set'][i]==n));if(n=='lib')renderLib();if(n=='res')renderSL();scrollTo(0,0)}
 function saveCfg(){cfg={key:$('#ck').value.trim(),model:$('#cm').value.trim()||'gemini-2.5-flash',nick:$('#cn').value.trim()||'향이'};SV('pp_c',cfg);ttl();alert('저장했습니다')}
 
@@ -111,9 +103,15 @@ const x=P.find(p=>p.id===editId)||P.find(p=>p.y==o.y&&p.g==o.g&&p.m==o.m&&p.no==
 x?Object.assign(x,o):P.push({id:Date.now(),...o});SV('pp_p',P);clearForm();renderLib()}
 function editP(id){const p=P.find(p=>p.id==id);editId=id;$('#ly').value=p.y;$('#lg').value=p.g;$('#lm').value=p.m;$('#ln').value=p.no;$('#lt').value=p.text;scrollTo(0,0)}
 function delP(id){if(confirm('삭제할까요?')){P=P.filter(p=>p.id!=id);SV('pp_p',P);renderLib()}}
-function renderLib(){const q=$('#q').value.trim().toLowerCase();
-const l=P.filter(p=>!q||(lab(p)+p.text).toLowerCase().includes(q)).sort((a,b)=>b.y-a.y||a.g-b.g||a.m-b.m||a.no-b.no);
-$('#plist').innerHTML=l.length?l.map(p=>`<div class="it"><div><b>${lab(p)}</b><small>${esc(p.text.slice(0,70))}</small></div><div class="a"><button class="g" onclick="editP(${p.id})">수정</button><button class="g" onclick="delP(${p.id})">삭제</button></div></div>`).join(''):'<p>저장된 지문이 없습니다. 위에서 지문을 추가하세요.</p>'}
+let LIM=60;const gk=p=>`${p.y} 고${p.g} ${p.m}월`;
+function ff(){$('#fy').innerHTML='<option value="">연도</option>'+[...new Set(P.map(p=>p.y).concat(2026))].sort((a,b)=>b-a).map(y=>`<option>${y}</option>`).join('');$('#fg').innerHTML='<option value="">학년</option>'+[1,2,3].map(g=>`<option value="${g}">고${g}</option>`).join('');$('#fm').innerHTML='<option value="">월</option>'+[3,4,5,6,7,9,10,11].map(m=>`<option value="${m}">${m}월</option>`).join('')}
+function flt(){const y=+$('#fy').value,g=+$('#fg').value,m=+$('#fm').value,t=$('#q').value.trim().toLowerCase(),r=$('#fn').value.trim();let a=0,b=999;if(r){const x=r.split(/[-~]/).map(Number);a=x[0]||0;b=x[1]||x[0]||999}
+return P.filter(p=>(!y||p.y==y)&&(!g||p.g==g)&&(!m||p.m==m)&&p.no>=a&&p.no<=b&&(!t||p.text.toLowerCase().includes(t)))}
+function mkFrom(id){const p=P.find(p=>p.id==id);$('#my').value=p.y;$('#mg').value=p.g;$('#mm').value=p.m;$('#mn').value=p.no;tab('mk')}
+function renderLib(){const l=flt().sort((a,b)=>b.y-a.y||a.g-b.g||a.m-b.m||a.no-b.no),C={},G={};
+l.forEach(p=>{C[gk(p)]=(C[gk(p)]||0)+1});l.slice(0,LIM).forEach(p=>{(G[gk(p)]=G[gk(p)]||[]).push(p)});
+const ks=Object.keys(G),act=$('#fy').value||$('#fg').value||$('#fm').value||$('#fn').value||$('#q').value;
+$('#plist').innerHTML=ks.length?ks.map((k,i)=>`<details ${act||i==0?'open':''}><summary>${k} <small>${C[k]}개</small></summary>${G[k].map(p=>`<div class="it"><div><b>${p.no}번</b><small>${esc(p.text.slice(0,50))}</small></div><div class="a"><button onclick="mkFrom(${p.id})">학습지</button><button class="g" onclick="editP(${p.id})">수정</button><button class="g" onclick="delP(${p.id})">삭제</button></div></div>`).join('')}</details>`).join('')+(l.length>LIM?`<button class="g" onclick="LIM+=60;renderLib()">더 보기 (${l.length-LIM}개 남음)</button>`:''):'<p>조건에 맞는 지문이 없습니다.</p>'}
 async function readPdf(f){const pdf=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise;let t='';window.np=pdf.numPages;
 for(let i=1;i<=pdf.numPages;i++){const c=await(await pdf.getPage(i)).getTextContent();let y=null;for(const it of c.items){if(y!==null&&Math.abs(it.transform[5]-y)>3)t+='\n';t+=it.str+' ';y=it.transform[5]}t+='\n'}return t.replace(/[ \t\u00a0]+/g,' ').replace(/ ?\n ?/g,'\n')}
 async function readHwpx(f){const z=await JSZip.loadAsync(await f.arrayBuffer());let t='';
@@ -136,7 +134,7 @@ async function restore(f){if(!f)return;try{const d=JSON.parse(await f.text());(d
 
 /* Gemini */
 async function gem(prompt){if(!cfg.key)throw Error('설정 탭에서 API 키를 입력하세요');
-const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.model}:generateContent?key=${encodeURIComponent(cfg.key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:1}})});
+const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.model}:generateContent?key=${encodeURIComponent(cfg.key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:1,maxOutputTokens:30000}})});
 const j=await r.json();if(!r.ok)throw Error(j.error?.message||r.status);
 const t=(j.candidates?.[0]?.content?.parts||[]).map(p=>p.text||'').join('').replace(/^\s*```json|```\s*$/g,'').trim();return JSON.parse(t)}
 const CH={zola:'졸라맨(동그란 머리+막대 몸의 단순 낙서 인물)',mickey:'둥근 검은 귀와 큰 눈의 클래식 만화풍 쥐(공식 디자인 복제 금지, 특징만 살린 단순한 자체 일러스트)',peter:'초록 모자와 깃털을 쓴 장난꾸러기 소년(단순한 자체 일러스트)',sherlock:'사냥모자·파이프·돋보기를 든 탐정',pooh:'꿀단지를 든 둥글고 노란 곰(단순한 자체 일러스트)'};
@@ -145,34 +143,48 @@ async function make(){const y=+$('#my').value,g=+$('#mg').value,m=+$('#mm').valu
 const p=P.find(p=>p.y==y&&p.g==g&&p.m==m&&p.no==no);if(!p)return alert('보관함에 없는 지문입니다. 먼저 지문 탭에서 저장하세요.');
 const ch=$('#mc').value,opts={sc:$('#o_sc').checked,vo:$('#o_vo').checked,gr:$('#o_gr').checked,ch:$('#o_ch').checked,qz:$('#o_qz').checked};
 $('#gb').disabled=true;$('#st').textContent='AI가 분석하고 그림을 그리는 중입니다. 30초~1분 걸립니다.';
-const pr=`너는 대한민국 최고의 영어 일타강사다. 아래 고${g} ${m}월 모의고사 ${no}번 문제를 분석해 학습지 데이터를 JSON으로만 출력하라.
-스키마: {"topic":"소재(한글)","title":"영어 제목 + 한글 제목","subject":"주제(한글 한 줄)","gist":"요지(한글)","summary":"한글 요약 2문장","flow":"A → B → C 형태의 흐름도(영어 키워드+한글)","sentences":[{"n":1,"en":"영어 문장","ko":"해석","note":"핵심 구문·어법 메모(없으면 빈 문자열)","hl":["형광펜 칠할 구절(en에 그대로 있는 부분 문자열)"]}],"scenes":[{"range":"1-3","role":"도입 등 글에서의 역할","title":"소제목","point":"핵심 설명(한글 2줄 이내)","key":false,"svg":"<svg viewBox='0 0 300 190' xmlns='http://www.w3.org/2000/svg'>...</svg>"}],"vocab":[{"w":"단어","m":"뜻"}],"grammar":[{"p":"포인트","e":"설명"}],"choices":[{"n":1,"why":"정답/오답 이유"}],"quiz":[{"q":"문제","a":"정답"}],"cheer":"여고생 ${NK()}에게 보내는 짧고 귀여운 응원 한마디(이모지 포함)"}
-규칙: 지문 본문 문장 전체를 sentences에 빠짐없이 넣는다(문제 발문·선지 제외). scenes는 3~5개로 문장 묶음별 장면을 만들고 글의 핵심 요지를 담은 장면 하나는 key를 true로 한다. svg는 viewBox 0 0 300 190의 완결형 SVG이며 파스텔 톤의 작고 아기자기한 스티커 스타일(캐릭터는 작게, 하트·별·반짝이 같은 소품 장식 포함, 여백 최소, 글자는 매우 짧게)로 그리고 속성은 작은따옴표만 쓰고 script를 쓰지 않는다. 장면마다 구도·등장인물 수·표정·소품·말풍선(<text>)·화살표·O/X를 지문 내용에 맞게 서로 다르고 자유롭게 창작하되 글자는 짧은 한글/영어로 한다. 캐릭터: ${chDesc(ch)}. 선지가 원문에 없으면 choices는 빈 배열. vocab 8~12개, grammar 3개, quiz 3개.
+const pr=`너는 대한민국 최고의 영어 일타강사이자 영어교육학 교수다. 평가원 출제 원리와 논리 구조 분석에 정통하다. 아래 고${g} ${m}월 모의고사 ${no}번 문제로 학습지 데이터를 JSON으로만 출력하라. 독자는 여고생이며 말투는 따뜻하고 전문적이다.
+스키마: {"type":"문제 유형","lv":난이도1~5,"min":예상 풀이 분,"topic":"소재","title":"영어 제목 / 한글 제목","subject":"주제","gist":"요지","summary":"핵심 요약 2문장","flow":[{"t":"단계명","d":"한 줄 설명"}],"sentences":[{"n":1,"en":"","ko":"해석","hl":["핵심 구절(en의 부분 문자열)"]}],"conn":["지문 속 연결어"],"eye":{"intent":"출제 의도","evidence":"정답 근거 문장 번호와 이유","strategy":["풀이 단계"]},"chars":{"t":"선생님 캐릭터 이름","s":"학생 캐릭터 이름"},"steps":[{"title":"역할: 소제목","who":"t 또는 s","say":"대화체 설명 1~2문장","svg":"<svg viewBox='0 0 160 130' xmlns='http://www.w3.org/2000/svg'>...</svg>"}],"vs":{"title":"","good":"","bad":""},"keys":["시험 직전 핵심"],"syntax":[{"en":"끊어읽기(/) 표시한 문장","st":"[S]{V}(O) 구조","pt":"문법 포인트","ko":"해석"}],"vocab":[{"i":1~3,"w":"","pos":"","m":"뜻","ex":"지문 속 연어·예문","syn":"유의어·반의어·파생어"}],"grammar":[{"p":"","e":""}],"choices":[{"n":1,"type":"함정 유형","why":"정답/오답 이유"}],"qa":[{"q":"핵심어를 _____로 바꾼 문장","h":"힌트","a":"정답"}],"qb":[{"q":"영어 문장","a":"모범 해석"}],"qc":{"q":"요약문 (A)(B) 빈칸","a":"정답"},"mcq":[{"q":"수능형 변형 문제","o":["① ..","② ..","③ ..","④ ..","⑤ .."],"a":"정답 번호","why":"해설"}],"cheer":"${NK()}에게 주는 짧고 따뜻한 응원 한마디"}
+개수: flow 3~4, steps 정확히 4, keys 3, syntax 3, vocab 6~8, grammar 3, qa 3, qb 2, mcq 2. sentences에는 지문 본문 전체를 빠짐없이 넣는다(발문·선지 제외). choices는 원문에 선지가 없으면 빈 배열. svg 규칙: 지브리 분위기의 수채화 느낌(하늘 그라데이션·구름·언덕·나무) 배경에 작은 캐릭터를 두고, 장면마다 구도·표정·소품을 다르게 자유롭게 창작하며 글자는 매우 짧게, 속성은 작은따옴표만, script 금지. 캐릭터: ${chDesc(ch)}. 선생님은 안경·지시봉 같은 소품을 들고 학생은 같은 캐릭터의 다른 색으로 그린다.
 [원문]
 ${p.text}`;
-try{const d=await gem(pr);(d.scenes||[]).forEach(s=>s.svg=clean(s.svg));cur={id:Date.now(),y,g,m,no,ch,d,opts};S.unshift(cur);saveS();$('#st').textContent='';show()}
+try{const d=await gem(pr);(d.steps||[]).forEach(s=>s.svg=clean(s.svg));cur={id:Date.now(),y,g,m,no,ch,d,opts};S.unshift(cur);saveS();$('#st').textContent='';show()}
 catch(e){$('#st').textContent='실패: '+e.message+' (다시 시도해 보세요)'}finally{$('#gb').disabled=false}}
 function saveS(){S=S.slice(0,30);while(S.length){try{localStorage.setItem('pp_s',JSON.stringify(S));return}catch{S.pop()}}}
 
 /* 학습지 */
-function renderSL(){$('#sl').innerHTML=S.length?S.map(s=>`<div class="it"><b>${lab(s)}</b><div class="a"><button class="g" onclick="openS(${s.id})">열기</button><button class="g" onclick="delS(${s.id})">삭제</button></div></div>`).join(''):'<p>아직 만든 학습지가 없습니다. 만들기 탭에서 생성하세요.</p>';$('#acts').hidden=!cur;if(cur)$('#sheet').innerHTML=render(cur)}
+let D=LS('pp_d',{});const dstr=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),pk=s=>`${s.y}-${s.g}-${s.m}-${s.no}`;
+function fin(){const k=pk(cur);D[k]?delete D[k]:D[k]=dstr(new Date());SV('pp_d',D);renderSL();sts()}
+function sts(){const ds=new Set(Object.values(D)),n=Object.keys(D).length;let d=new Date(),c=0;if(!ds.has(dstr(d)))d.setDate(d.getDate()-1);while(ds.has(dstr(d))){c++;d.setDate(d.getDate()-1)}$('#stat').textContent=`🔥 ${c}일 연속 · 🌲 나의 숲 ${n}그루`}
+function renderSL(){$('#sl').innerHTML=S.length?`<details ${cur?'':'open'}><summary>만든 학습지 ${S.length}개</summary>`+S.map(s=>`<div class="it"><b>${lab(s)}${D[pk(s)]?' ✔':''}</b><div class="a"><button class="g" onclick="openS(${s.id})">열기</button><button class="g" onclick="delS(${s.id})">삭제</button></div></div>`).join('')+'</details>':'<p>아직 만든 학습지가 없습니다. 만들기 탭에서 생성하세요.</p>';$('#acts').hidden=!cur;if(cur){$('#sheet').innerHTML=render(cur);$('#dn').textContent=D[pk(cur)]?'✔ 학습 완료됨 (취소)':'🌱 학습 완료!'}}
 function openS(id){cur=S.find(s=>s.id==id);show()}
 function delS(id){if(confirm('삭제할까요?')){S=S.filter(s=>s.id!=id);if(cur&&cur.id==id){cur=null;$('#sheet').innerHTML=''}saveS();renderSL()}}
 function show(){tab('res')}
-function render(s){const nk=esc(NK()),d=s.d,o=s.opts,kv=(k,v)=>v?`<div class="v">${k}</div><div>${esc(v)}</div>`:'';
-let h=`<div class="sh"><div class="by">🎀 ${nk}의 일타 지문분석 노트</div><h1>${s.y}년 고${s.g} ${s.m}월 ${s.no}번</h1>`+kv('소재',d.topic)+kv('제목',d.title)+kv('주제',d.subject)+kv('요지',d.gist)+kv('요약',d.summary)+kv('흐름도',d.flow);
-h+=`<div class="v">${nk}의 지문 · 해석 📖</div>`+(d.sentences||[]).map(x=>{let e=esc(x.en);(x.hl||[]).forEach(p=>{const q=esc(p);if(q&&e.includes(q))e=e.replace(q,'<mark>'+q+'</mark>')});return`<div class="sen"><b>${num(x.n)}</b> ${e}<div class="ko">${esc(x.ko)}</div>${x.note?`<div class="nt">✎ ${esc(x.note)}</div>`:''}</div>`}).join('');
-if(o.sc&&d.scenes?.length)h+='<div class="pb"></div>'+`<div class="v">${nk}의 그림으로 이해하기 🎨</div><div class="scs">`+d.scenes.map((x,i)=>`<div class="sc${x.key?' k':''}"><h4>${x.key?'★ ':''}[${esc(x.range)}번 문장] ${esc(x.role)}: ${esc(x.title)}</h4>${x.svg||''}<div>${esc(x.point)}</div><button class="g np" onclick="redraw(${i},this)">🔄 그림 다시 그리기</button></div>`).join('')+'</div>';
-if((o.vo&&d.vocab?.length)||(o.gr&&d.grammar?.length)||(o.ch&&d.choices?.length)||(o.qz&&d.quiz?.length))h+='<div class="pb"></div>';
-if(o.vo&&d.vocab?.length)h+=`<div class="v">${nk}의 어휘 창고 🍓</div><table>`+d.vocab.map(x=>`<tr><td><b>${esc(x.w)}</b></td><td>${esc(x.m)}</td></tr>`).join('')+'</table>';
-if(o.gr&&d.grammar?.length)h+=`<div class="v">${nk}의 어법 꿀팁 🍯</div>`+d.grammar.map(x=>`<div class="sen"><b>${esc(x.p)}</b> ${esc(x.e)}</div>`).join('');
-if(o.ch&&d.choices?.length)h+=`<div class="v">${nk}의 선지 탈탈 털기 🔍</div>`+d.choices.map(x=>`<div class="sen"><b>${num(x.n)}</b> ${esc(x.why)}</div>`).join('');
-if(o.qz&&d.quiz?.length)h+=`<div class="v">${nk}의 도전! 확인문제 💪</div>`+d.quiz.map((x,i)=>`<div class="sen">${i+1}. ${esc(x.q)}<div class="qa">정답: ${esc(x.a)}</div></div>`).join('');
-return h+(d.cheer?`<div class="cheer">💌 ${esc(d.cheer)}</div>`:'')+'</div>'}
-async function redraw(i,b){const sc=cur.d.scenes[i];b.disabled=true;b.textContent='그리는 중…';
-try{const r=await gem(`다음 장면 설명에 맞춰 이전과 완전히 다른 구도·표정·소품의 새 SVG 그림을 {"svg":"..."} JSON으로만 출력하라. viewBox 0 0 300 190, 작고 아기자기한 파스텔 스티커 스타일, 속성은 작은따옴표만, script 금지, 말풍선·화살표·O/X 자유롭게. 캐릭터: ${chDesc(cur.ch)}. 장면: ${sc.role} / ${sc.title} / ${sc.point}. 글의 요지: ${cur.d.gist}`);const v=clean(r.svg);if(v)sc.svg=v;saveS()}catch(e){alert('실패: '+e.message)}
+const star=n=>'★'.repeat(Math.max(0,Math.min(5,n|0))),L=(a,f)=>(a||[]).map(f).join(''),PH=(g,t,u)=>`<div class="ph"><span class="tag">${g}</span><h2>${t}</h2><span class="sb">${u}</span></div>`;
+function render(s){const nk=esc(NK()),d=s.d,o=s.opts,T=`${s.y} 고${s.g} ${s.m}월 ${s.no}번`;
+const en=L(d.sentences,x=>{let t=esc(x.en);(x.hl||[]).forEach(p=>{const q=esc(p);if(q&&t.includes(q))t=t.replace(q,()=>'<mark>'+q+'</mark>')});(d.conn||[]).forEach(c=>{const w=String(c).replace(/[^\w ]/g,'').trim();if(w)t=t.replace(new RegExp('\\b'+w+'\\b','i'),m=>'<u class="cn">'+m+'</u>')});return`<sup>${x.n}</sup>${t} `});
+const p1=`<div class="pg">${PH('🍃 '+nk+'의 독해 전략','원문 심층 독해',T)}<div class="chips"><span>${esc(d.type)}</span><span>난이도 ${star(d.lv)}</span><span>⏱ ${esc(d.min)}분</span></div>
+<div class="g2"><div class="ps"><h5>원문 · 핵심 구문 하이라이트</h5><p class="en">${en}</p></div><div class="cds">${L([['소재','co',d.topic],['제목','su',d.title],['주제','sk',d.subject],['요지','mo',d.gist],['핵심 요약','fo',d.summary]],([k,c,v])=>`<div class="cd ${c}"><b>[${k}]</b> ${esc(v)}</div>`)}</div></div>
+<div class="v">논리 전개 흐름도</div><div class="fl">${L(d.flow,(f,i)=>`<div class="fb"><b>Step ${i+1}. ${esc(f.t)}</b><small>${esc(f.d)}</small></div>`)}</div>
+<div class="v">해석</div><div class="ko">${L(d.sentences,x=>`<sup>${x.n}</sup>${esc(x.ko)} `)}</div>
+<div class="eye"><b>🔎 출제자의 눈</b><div>${esc(d.eye?.intent)}</div><div>정답 근거: ${esc(d.eye?.evidence)}</div><ol>${L(d.eye?.strategy,x=>`<li>${esc(x)}</li>`)}</ol></div></div>`;
+const p2=o.sc&&d.steps?.length?`<div class="pg">${PH('🌿 시각적 개념정리','한눈에 들어오는 핵심 정리',T)}<div class="ban">${esc(d.chars?.t)} 선생님 & ${esc(d.chars?.s)}의 1분 핵심 과외</div>
+<div class="stg">${L(d.steps,(x,i)=>`<div class="st"><span class="chip">Step ${i+1}</span><b>${esc(x.title)}</b><div class="stb">${x.svg||''}<div class="bub"><b>${esc(x.who=='s'?d.chars?.s:d.chars?.t)}:</b> ${esc(x.say)}</div></div><button class="g np" onclick="redraw(${i},this)">🔄 그림 다시</button></div>`)}</div>
+<div class="v">직관 비교 · ${esc(d.vs?.title)}</div><div class="vs"><div class="ok">✔ ${esc(d.vs?.good)}</div><b>VS</b><div class="no">✘ ${esc(d.vs?.bad)}</div></div>
+<div class="kp"><b>💡 시험 직전 Key Point</b><ul>${L(d.keys,k=>`<li>${esc(k)}</li>`)}</ul></div></div>`:'';
+let a='';
+if(o.gr&&d.syntax?.length)a+='<div class="v">핵심 구문 뽀개기</div>'+L(d.syntax,x=>`<div class="sx"><div class="en">${esc(x.en)}</div><code>${esc(x.st)}</code><div>💡 ${esc(x.pt)}</div><div class="ko">${esc(x.ko)}</div></div>`)+(d.grammar?.length?'<div class="v">어법 포인트</div>'+L(d.grammar,x=>`<div class="sen"><b>${esc(x.p)}</b> ${esc(x.e)}</div>`):'');
+if(o.vo&&d.vocab?.length)a+=`<div class="v">${nk}의 어휘 노트</div><table><tr><th>중요도</th><th>단어</th><th>뜻</th><th>연어·예문</th><th>유의어·파생어</th></tr>`+L(d.vocab,x=>`<tr><td class="s3">${star(x.i)}</td><td><b>${esc(x.w)}</b> <small>${esc(x.pos)}</small></td><td>${esc(x.m)}</td><td>${esc(x.ex)}</td><td>${esc(x.syn)}</td></tr>`)+'</table>';
+if(o.ch&&d.choices?.length)a+='<div class="v">오답 함정 분석</div>'+L(d.choices,x=>`<div class="sen"><b>${num(x.n)}</b> <span class="tg">${esc(x.type)}</span> ${esc(x.why)}</div>`);
+if(o.qz)a+='<div class="v">셀프 테스트</div><b>[A] 빈칸 어휘 채우기</b>'+L(d.qa,(x,i)=>`<div class="sen">(${i+1}) ${esc(x.q)} <span class="hint">[힌트: ${esc(x.h)}]</span></div>`)+'<b>[B] 한 줄 해석 연습</b>'+L(d.qb,(x,i)=>`<div class="sen">(${i+1}) ${esc(x.q)}</div><div class="ln"></div>`)+(d.qc?`<b>[C] 서술형 대비 요약문</b><div class="sen">${esc(d.qc.q)}</div>`:'')+'<b>[D] 수능형 변형문제</b>'+L(d.mcq,(x,i)=>`<div class="sen">(${i+1}) ${esc(x.q)}<br>${L(x.o,t=>esc(t)+'&nbsp;&nbsp;')}</div>`);
+a+='<div class="ck">☐ 소리 내어 읽기 &nbsp;☐ 끊어읽기 표시 &nbsp;☐ 어휘 암기 &nbsp;☐ 셀프 테스트 &nbsp;☐ 오답 정리</div>'+(d.cheer?`<div class="cheer">${esc(d.cheer)}</div>`:'');
+const p3=`<div class="pg">${PH('🍂 구문·어휘·테스트',nk+'의 실전 노트',T)}${a}</div>`;
+const p4=o.qz?`<div class="pg">${PH('🌙 정답·해설','풀고 나서 채점하세요',T)}<b>[A]</b>`+L(d.qa,(x,i)=>` (${i+1}) ${esc(x.a)}`)+'<br><b>[B]</b>'+L(d.qb,(x,i)=>`<div class="sen">(${i+1}) ${esc(x.a)}</div>`)+(d.qc?`<b>[C]</b> ${esc(d.qc.a)}<br>`:'')+'<b>[D]</b>'+L(d.mcq,(x,i)=>`<div class="sen">(${i+1}) 정답 ${esc(x.a)} — ${esc(x.why)}</div>`)+'</div>':'';
+return p1+p2+p3+p4}
+async function redraw(i,b){const x=cur.d.steps[i];b.disabled=true;b.textContent='그리는 중…';
+try{const r=await gem(`다음 장면에 맞춰 이전과 다른 구도·표정·소품의 새 SVG를 {"svg":"..."} JSON으로만 출력하라. viewBox 0 0 160 130, 속성은 작은따옴표만, script 금지. 지브리 분위기의 수채화 느낌 배경(하늘 그라데이션·구름·언덕)에 작은 캐릭터. 캐릭터: ${chDesc(cur.ch)}. 장면: ${x.title} / ${x.say}`);const v=clean(r.svg);if(v)x.svg=v;saveS()}catch(e){alert('실패: '+e.message)}
 renderSL()}
 async function share(){const d=cur.d,t=`${NK()}의 ${lab(cur)} 지문분석\n\n소재: ${d.topic}\n주제: ${d.subject}\n요지: ${d.gist}\n요약: ${d.summary}\n흐름: ${d.flow}\n\n`+(d.sentences||[]).map(x=>`${num(x.n)} ${x.en}\n→ ${x.ko}`).join('\n');
 if(navigator.share){try{await navigator.share({title:lab(cur)+' 지문분석',text:t})}catch{}}else{try{await navigator.clipboard.writeText(t);alert('내용을 복사했습니다. 카카오톡에 붙여넣으세요.')}catch{alert('이 브라우저는 공유를 지원하지 않습니다.')}}}
-ttl();tab('lib');
+ff();ttl();sts();tab('lib');
 </script></body></html>
