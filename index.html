@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#e8467c"><title>지문분석 학습지</title>
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#3f6b4f"><title>지문분석 학습지</title>
 <style>
 :root{--ink:#2f3e46;--fo:#3f6b4f;--ln:#d8cfb8;--co:#d9825b;--su:#e9b44c;--sk:#7fb5cc;--mo:#8fae7a;--pk:#f4a6b8}
 *{box-sizing:border-box}[hidden]{display:none!important}
@@ -6,6 +6,7 @@ body{margin:0;background:#f4efe0;color:var(--ink);font:15px/1.65 "Gowun Dodum",s
 h2,h3,.top,.v,.tag,.ban,.chip{font-family:"Gowun Batang",serif}
 .top{padding:calc(env(safe-area-inset-top) + 12px) 14px 10px;text-align:center;background:linear-gradient(#bfdde8,#f4efe0)}
 #ttl{font-size:22px;font-weight:700;color:var(--fo)}#stat{font-size:12.5px;color:#6b705c}
+.badge-cloud{display:inline-block;font-size:11px;padding:1px 8px;border-radius:99px;background:#e0f2fe;color:#0369a1;margin-left:6px;vertical-align:middle}
 nav{position:sticky;top:0;z-index:5;display:flex;background:#f4efe0;border-bottom:1px solid var(--ln)}
 nav button{flex:1;background:none;border:0;border-bottom:3px solid transparent;border-radius:0;padding:11px 2px;color:#6b705c}
 nav button.on{color:var(--fo);border-color:var(--fo)}
@@ -17,6 +18,7 @@ input,select,textarea{font:inherit;padding:8px;border:1px solid var(--ln);border
 button,.btn{font:700 14px "Gowun Dodum",sans-serif;background:var(--fo);color:#fff;border:0;border-radius:10px;padding:9px 14px;cursor:pointer;display:inline-block;text-align:center}
 button.g,.btn.g{background:#fff;color:var(--fo);border:1.5px solid var(--fo)}
 button.pk,.btn.pk{background:#e85d88;color:#fff;border:0}
+button.bl,.btn.bl{background:#0284c7;color:#fff;border:0}
 button:disabled{opacity:.5}
 .chk label{display:inline-block;margin:4px 10px 4px 0}.chk input{width:auto}
 details{border-top:1px solid var(--ln)}summary{padding:9px 2px;font-weight:700;cursor:pointer;color:var(--fo)}summary small{color:#888;font-weight:400}
@@ -42,9 +44,10 @@ mark{background:linear-gradient(transparent 55%,#f6c85f 55%)}.cn{color:var(--co)
 .pr-box{background:#fff5f7;border:2px solid var(--pk);border-radius:14px;padding:12px;margin-bottom:12px}
 .pr-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
 .pr-head b{color:#c93b67;font-size:15px}
-.pr-ta{font:13px/1.55 monospace,"Gowun Dodum",sans-serif;background:#fff;border:1.5px solid #f2c6d2;border-radius:10px;padding:10px;width:100%;height:210px;resize:vertical;color:#333}
+.pr-ta{font:13px/1.55 monospace,"Gowun Dodum",sans-serif;background:#fff;border:1.5px solid #f2c6d2;border-radius:10px;padding:10px;width:100%;height:190px;resize:vertical;color:#333}
 .sn-img-wrap{text-align:center;margin:10px 0;border:2.5px solid var(--pk);border-radius:16px;background:#fff;padding:8px;box-shadow:0 4px 12px rgba(0,0,0,0.04)}
 .sn-img-wrap img{max-width:100%;height:auto;border-radius:10px;display:block;margin:0 auto}
+.img-meta{font-size:11.5px;color:#888;margin-top:4px}
 .stg{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:#fff;border:2.5px solid var(--pk);border-radius:16px;padding:12px;position:relative}
 .st{border:1px dashed #e5b3c3;border-radius:12px;padding:10px;background:#fffdfd}
 .st-hd{font-weight:700;color:#b8335e;font-size:14px;border-bottom:1.5px solid #f9d8e2;padding-bottom:4px;margin-bottom:6px}
@@ -64,7 +67,7 @@ table{border-collapse:collapse;width:100%;font-size:12.5px}th{background:#e8efd9
 @media print{.top,nav,.np,section:not(#res){display:none!important}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}body{background:#fff}.pg{border:0;padding:0;margin:0;border-radius:0;break-after:page}.pg:last-child{break-after:auto}@page{size:A4;margin:10mm}}
 </style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap"></head><body>
 <div class="top"><div id="ttl"></div><div id="stat"></div></div>
-<nav><button onclick="tab('lib')">📚 지문</button><button onclick="tab('mk')">✏️ 만들기</button><button onclick="tab('res')">📄 학습지</button><button onclick="tab('set')">⚙️ 설정</button></nav>
+<nav class="np"><button onclick="tab('lib')">📚 지문</button><button onclick="tab('mk')">✏️ 만들기</button><button onclick="tab('res')">📄 학습지</button><button onclick="tab('set')">⚙️ 설정</button></nav>
 
 <section id="lib">
 <div class="card"><h3>지문 저장</h3>
@@ -73,8 +76,13 @@ table{border-collapse:collapse;width:100%;font-size:12.5px}th{background:#e8efd9
 <div class="row"><button onclick="savePassage()">저장</button><button class="g" onclick="clearForm()">새로 쓰기</button></div>
 <div class="row"><label class="btn g">📥 PDF·한글(hwpx)·TXT 일괄 등록<input type="file" accept=".pdf,.txt,.hwpx,.hwp" hidden onchange="importFile(this.files[0]);this.value=''"></label></div>
 <small>EBSi에서 받은 PDF를 고르면 위에서 선택한 연도·학년·월로 18~45번을 자동 분리해 저장합니다.</small></div>
-<div class="card"><h3>보관함</h3><div class="row"><select id="fy" onchange="LIM=60;renderLib()"></select><select id="fg" onchange="LIM=60;renderLib()"></select><select id="fm" onchange="LIM=60;renderLib()"></select><input id="fn" placeholder="번호 (31 또는 30-35)" oninput="LIM=60;renderLib()"></div><input id="q" placeholder="글자 검색" oninput="LIM=60;renderLib()"><div id="plist"></div>
-<div class="row"><button class="g" onclick="backup()">백업 저장</button><label class="btn g">백업 복원<input type="file" accept=".json" hidden onchange="restore(this.files[0]);this.value=''"></label></div></div>
+<div class="card">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <h3 style="margin:0">보관함</h3>
+    <button class="g" style="padding:4px 10px;font-size:12.5px" onclick="syncFromCloud(true)">☁️ 클라우드 새로고침</button>
+  </div>
+  <div class="row"><select id="fy" onchange="LIM=60;renderLib()"></select><select id="fg" onchange="LIM=60;renderLib()"></select><select id="fm" onchange="LIM=60;renderLib()"></select><input id="fn" placeholder="번호 (31 또는 30-35)" oninput="LIM=60;renderLib()"></div><input id="q" placeholder="글자 검색" oninput="LIM=60;renderLib()"><div id="plist"></div>
+<div class="row"><button class="g" onclick="backup()">백업 파일 저장</button><label class="btn g">백업 파일 복원<input type="file" accept=".json" hidden onchange="restore(this.files[0]);this.value=''"></label></div></div>
 </section>
 
 <section id="mk" hidden><div class="card"><h3>학습지 & 스케치노트 프롬프트 만들기</h3>
@@ -93,39 +101,229 @@ table{border-collapse:collapse;width:100%;font-size:12.5px}th{background:#e8efd9
 <div class="row"><button id="gb" onclick="make()">✨ 학습지 & 스케치노트 기획 생성</button></div><div id="st" style="font-weight:700;color:var(--fo);margin-top:6px;"></div></div></section>
 
 <section id="res" hidden><div class="card np"><h3>만든 학습지</h3><div id="sl"></div></div>
-<div class="row np" id="acts" hidden><button class="g" id="dn" onclick="fin()">🌱 학습 완료</button><button onclick="share()">📤 공유</button><button onclick="window.print()">🖨 PDF 저장·인쇄</button></div>
+<div class="row np" id="acts" hidden>
+  <button class="g" id="dn" onclick="fin()">🌱 학습 완료</button>
+  <button class="bl" onclick="shareLink()">🔗 공유 링크 복사</button>
+  <button class="g" onclick="shareText()">📝 텍스트 공유</button>
+  <button onclick="window.print()">🖨 PDF·인쇄</button>
+</div>
 <div id="sheet"></div></section>
 
-<section id="set" hidden><div class="card"><h3>설정</h3>
+<section id="set" hidden>
+<div class="card"><h3>🤖 AI 설정</h3>
 <label>Gemini API 키</label><input id="ck" type="password" autocomplete="off" placeholder="AI Studio에서 발급한 키">
 <label>이름 애칭</label><input id="cn" placeholder="향이"><label>모델</label><input id="cm" placeholder="gemini-2.5-flash">
-<div class="row"><button onclick="saveCfg()">저장</button></div>
-<small>키는 이 기기의 브라우저에만 저장되며 Gemini 서버로만 전송됩니다.</small></div></section>
+</div>
+
+<div class="card"><h3>☁️ Firebase 클라우드 DB 설정 (선택·무료 공유용)</h3>
+<label>Firebase Project ID</label><input id="fb_pid" placeholder="예: my-english-sheet">
+<label>Firebase Web API Key</label><input id="fb_key" type="password" autocomplete="off" placeholder="AIzaSy... (Firebase 웹 앱 설정 키)">
+<small style="display:block;margin:6px 0;color:#555">
+  💡 Project ID와 API Key를 입력하면 <b>폰·PC 실시간 동기화</b> 및 <b>카카오톡 링크 공유(`?s=ID`)</b>가 활성화됩니다.<br>
+  💡 삽화 이미지는 자동으로 <b>초경량 WebP(약 80~120KB)</b>로 다이어트되어 무료 DB(1GB)에 약 8,000장 이상 거뜬히 저장됩니다.
+</small>
+<div class="row"><button onclick="saveCfg()">⚙️ 전체 설정 저장</button><button class="g" onclick="pushAllToCloud()">⬆️ 내 기기 데이터 클라우드에 모두 올리기</button></div>
+</div>
+</section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<!-- Firebase 호환 SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 <script>
 const $=s=>document.querySelector(s);
 const LS=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
-const SV=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{alert('저장 공간이 부족합니다. 백업 후 오래된 항목을 삭제하세요.')}};
-let P=LS('pp_p',[]),S=LS('pp_s',[]),cfg=LS('pp_c',{key:'',model:'gemini-2.5-flash'}),editId=null,cur=null;const NK=()=>cfg.nick||'향이';
+const SV=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
+
+/* IndexedDB (로컬 용량 5MB 제한 돌파 -> 수 기가바이트 저장) */
+const IDB = {
+  db: null,
+  async init(){
+    if(this.db) return this.db;
+    return new Promise((res, rej)=>{
+      const req = indexedDB.open('EnglishSheetDB', 1);
+      req.onupgradeneeded = e => e.target.result.createObjectStore('kv');
+      req.onsuccess = e => { this.db = e.target.result; res(this.db); };
+      req.onerror = e => rej(e);
+    });
+  },
+  async get(k, def){
+    try{
+      const db = await this.init();
+      return await new Promise(r => {
+        const req = db.transaction('kv','readonly').objectStore('kv').get(k);
+        req.onsuccess = () => r(req.result ?? def);
+        req.onerror = () => r(def);
+      });
+    }catch{ return def; }
+  },
+  async set(k, v){
+    try{
+      const db = await this.init();
+      return await new Promise(r => {
+        const tx = db.transaction('kv','readwrite');
+        tx.objectStore('kv').put(v, k);
+        tx.oncomplete = () => r(true);
+        tx.onerror = () => r(false);
+      });
+    }catch{ return false; }
+  }
+};
+
+let P=[], S=[], D=LS('pp_d',{}), cfg=LS('pp_c',{key:'',model:'gemini-2.5-flash',nick:'향이',fbPid:'',fbKey:''}), editId=null, cur=null, fdb=null;
+const NK=()=>cfg.nick||'향이';
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num=n=>n>=1&&n<=20?String.fromCharCode(9311+n):'('+n+')';
+
 document.querySelectorAll('.sg').forEach(e=>{e.innerHTML=[1,2,3].map(g=>`<option value="${g}">고${g}</option>`).join('')});
 document.querySelectorAll('.sm').forEach(e=>{e.innerHTML=[3,4,5,6,7,9,10,11].map(m=>`<option value="${m}">${m}월</option>`).join('');e.value=9});
-$('#ck').value=cfg.key;$('#cm').value=cfg.model;$('#cn').value=NK();function ttl(){$('#ttl').textContent=NK()+'의 영어 서재'}
-function tab(n){document.querySelectorAll('section').forEach(e=>e.hidden=e.id!=n);document.querySelectorAll('nav button').forEach((b,i)=>b.classList.toggle('on',['lib','mk','res','set'][i]==n));if(n=='lib')renderLib();if(n=='res')renderSL();scrollTo(0,0)}
-function saveCfg(){cfg={key:$('#ck').value.trim(),model:$('#cm').value.trim()||'gemini-2.5-flash',nick:$('#cn').value.trim()||'향이'};SV('pp_c',cfg);ttl();alert('저장했습니다')}
+
+function initUI(){
+  $('#ck').value=cfg.key||'';
+  $('#cm').value=cfg.model||'gemini-2.5-flash';
+  $('#cn').value=NK();
+  $('#fb_pid').value=cfg.fbPid||'';
+  $('#fb_key').value=cfg.fbKey||'';
+  ttl();
+}
+
+function ttl(){
+  const cloudBadge = fdb ? `<span class="badge-cloud">☁️ Cloud 연결됨</span>` : '';
+  $('#ttl').innerHTML = esc(NK())+'의 영어 서재 ' + cloudBadge;
+}
+
+function tab(n){
+  document.querySelectorAll('section').forEach(e=>e.hidden=e.id!=n);
+  document.querySelectorAll('nav button').forEach((b,i)=>b.classList.toggle('on',['lib','mk','res','set'][i]==n));
+  if(n=='lib')renderLib();
+  if(n=='res')renderSL();
+  scrollTo(0,0);
+}
+
+/* Firebase 초기화 및 클라우드 동기화 */
+function initFirebase(){
+  if(!cfg.fbPid || !cfg.fbKey){ fdb=null; ttl(); return; }
+  try{
+    const fbCfg = {
+      apiKey: cfg.fbKey,
+      authDomain: `${cfg.fbPid}.firebaseapp.com`,
+      projectId: cfg.fbPid
+    };
+    if(!firebase.apps.length) firebase.initializeApp(fbCfg);
+    fdb = firebase.firestore();
+    ttl();
+  }catch(e){
+    console.warn('Firebase init error:', e);
+    fdb = null;
+    ttl();
+  }
+}
+
+async function saveCfg(){
+  cfg={
+    key:$('#ck').value.trim(),
+    model:$('#cm').value.trim()||'gemini-2.5-flash',
+    nick:$('#cn').value.trim()||'향이',
+    fbPid:$('#fb_pid').value.trim(),
+    fbKey:$('#fb_key').value.trim()
+  };
+  SV('pp_c',cfg);
+  initFirebase();
+  if(fdb) await syncFromCloud(false);
+  alert('설정을 저장했습니다' + (fdb ? ' (☁️ Firebase 클라우드 연결 완료!)' : ''));
+}
+
+async function saveLocalP(){ await IDB.set('pp_p', P); }
+async function saveLocalS(){ await IDB.set('pp_s', S); }
+
+async function cloudSavePassage(p){
+  if(!fdb) return;
+  try{ await fdb.collection('passages').doc(String(p.id)).set(p); }catch(e){ console.warn(e); }
+}
+async function cloudDelPassage(id){
+  if(!fdb) return;
+  try{ await fdb.collection('passages').doc(String(id)).delete(); }catch(e){ console.warn(e); }
+}
+async function cloudSaveSheet(s){
+  if(!fdb) return false;
+  try{
+    await fdb.collection('sheets').doc(String(s.id)).set(s);
+    return true;
+  }catch(e){
+    console.warn('Cloud sheet save error:', e);
+    alert('클라우드 저장 실패: ' + e.message + '\n(Firestore 규칙이 allow read, write: if true; 인지 확인하세요)');
+    return false;
+  }
+}
+async function cloudDelSheet(id){
+  if(!fdb) return;
+  try{ await fdb.collection('sheets').doc(String(id)).delete(); }catch(e){ console.warn(e); }
+}
+
+async function syncFromCloud(showAlert){
+  if(!fdb){
+    if(showAlert) alert('먼저 [설정] 탭에서 Firebase Project ID와 API Key를 입력해 주세요.');
+    return;
+  }
+  try{
+    const pSnap = await fdb.collection('passages').get();
+    pSnap.forEach(doc => {
+      const d = doc.data();
+      const idx = P.findIndex(x => String(x.id) === String(d.id) || (x.y==d.y&&x.g==d.g&&x.m==d.m&&x.no==d.no));
+      if(idx >= 0) P[idx] = d; else P.push(d);
+    });
+    const sSnap = await fdb.collection('sheets').get();
+    sSnap.forEach(doc => {
+      const d = doc.data();
+      const idx = S.findIndex(x => String(x.id) === String(d.id));
+      if(idx >= 0) S[idx] = d; else S.push(d);
+    });
+    S.sort((a,b)=>b.id-a.id);
+    await saveLocalP();
+    await saveLocalS();
+    ff(); renderLib(); renderSL();
+    if(showAlert) alert(`☁️ 동기화 완료! (지문 ${P.length}개, 학습지 ${S.length}개)`);
+  }catch(e){
+    if(showAlert) alert('클라우드 동기화 오류: ' + e.message);
+  }
+}
+
+async function pushAllToCloud(){
+  if(!fdb) return alert('먼저 Firebase 설정을 입력하고 저장하세요.');
+  if(!confirm(`현재 기기의 지문 ${P.length}개와 학습지 ${S.length}개를 모두 클라우드에 업로드할까요?`)) return;
+  try{
+    for(const p of P) await fdb.collection('passages').doc(String(p.id)).set(p);
+    for(const s of S) await fdb.collection('sheets').doc(String(s.id)).set(s);
+    alert('⬆️ 모든 데이터를 Firebase 클라우드에 성공적으로 업로드했습니다!');
+  }catch(e){
+    alert('업로드 중 오류 발생: ' + e.message);
+  }
+}
 
 /* 지문 보관함 */
 const lab=p=>`${p.y} 고${p.g} ${p.m}월 ${p.no}번`;
 function clearForm(){editId=null;$('#ln').value='';$('#lt').value=''}
-function savePassage(){const o={y:+$('#ly').value,g:+$('#lg').value,m:+$('#lm').value,no:+$('#ln').value,text:$('#lt').value.trim()};
-if(!o.no||!o.text)return alert('번호와 지문을 입력하세요');
-const x=P.find(p=>p.id===editId)||P.find(p=>p.y==o.y&&p.g==o.g&&p.m==o.m&&p.no==o.no);
-x?Object.assign(x,o):P.push({id:Date.now(),...o});SV('pp_p',P);clearForm();renderLib()}
+async function savePassage(){
+  const o={y:+$('#ly').value,g:+$('#lg').value,m:+$('#lm').value,no:+$('#ln').value,text:$('#lt').value.trim()};
+  if(!o.no||!o.text)return alert('번호와 지문을 입력하세요');
+  let x=P.find(p=>p.id===editId)||P.find(p=>p.y==o.y&&p.g==o.g&&p.m==o.m&&p.no==o.no);
+  if(x){ Object.assign(x,o); }
+  else { x={id:Date.now(),...o}; P.push(x); }
+  await saveLocalP();
+  await cloudSavePassage(x);
+  clearForm(); ff(); renderLib();
+}
 function editP(id){const p=P.find(p=>p.id==id);editId=id;$('#ly').value=p.y;$('#lg').value=p.g;$('#lm').value=p.m;$('#ln').value=p.no;$('#lt').value=p.text;scrollTo(0,0)}
-function delP(id){if(confirm('삭제할까요?')){P=P.filter(p=>p.id!=id);SV('pp_p',P);renderLib()}}
+async function delP(id){
+  if(confirm('삭제할까요?')){
+    P=P.filter(p=>p.id!=id);
+    await saveLocalP();
+    await cloudDelPassage(id);
+    renderLib();
+  }
+}
 let LIM=60;const gk=p=>`${p.y} 고${p.g} ${p.m}월`;
 function ff(){$('#fy').innerHTML='<option value="">연도</option>'+[...new Set(P.map(p=>p.y).concat(2026))].sort((a,b)=>b-a).map(y=>`<option>${y}</option>`).join('');$('#fg').innerHTML='<option value="">학년</option>'+[1,2,3].map(g=>`<option value="${g}">고${g}</option>`).join('');$('#fm').innerHTML='<option value="">월</option>'+[3,4,5,6,7,9,10,11].map(m=>`<option value="${m}">${m}월</option>`).join('')}
 function flt(){const y=+$('#fy').value,g=+$('#fg').value,m=+$('#fm').value,t=$('#q').value.trim().toLowerCase(),r=$('#fn').value.trim();let a=0,b=999;if(r){const x=r.split(/[-~]/).map(Number);a=x[0]||0;b=x[1]||x[0]||999}
@@ -135,6 +333,7 @@ function renderLib(){const l=flt().sort((a,b)=>b.y-a.y||a.g-b.g||a.m-b.m||a.no-b
 l.forEach(p=>{C[gk(p)]=(C[gk(p)]||0)+1});l.slice(0,LIM).forEach(p=>{(G[gk(p)]=G[gk(p)]||[]).push(p)});
 const ks=Object.keys(G),act=$('#fy').value||$('#fg').value||$('#fm').value||$('#fn').value||$('#q').value;
 $('#plist').innerHTML=ks.length?ks.map((k,i)=>`<details ${act||i==0?'open':''}><summary>${k} <small>${C[k]}개</small></summary>${G[k].map(p=>`<div class="it"><div><b>${p.no}번</b><small>${esc(p.text.slice(0,50))}</small></div><div class="a"><button onclick="mkFrom(${p.id})">학습지</button><button class="g" onclick="editP(${p.id})">수정</button><button class="g" onclick="delP(${p.id})">삭제</button></div></div>`).join('')}</details>`).join('')+(l.length>LIM?`<button class="g" onclick="LIM+=60;renderLib()">더 보기 (${l.length-LIM}개 남음)</button>`:''):'<p>조건에 맞는 지문이 없습니다.</p>'}
+
 async function readPdf(f){const pdf=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise;let t='';window.np=pdf.numPages;
 for(let i=1;i<=pdf.numPages;i++){const c=await(await pdf.getPage(i)).getTextContent();let y=null;for(const it of c.items){if(y!==null&&Math.abs(it.transform[5]-y)>3)t+='\n';t+=it.str+' ';y=it.transform[5]}t+='\n'}return t.replace(/[ \t\u00a0]+/g,' ').replace(/ ?\n ?/g,'\n')}
 async function readHwpx(f){const z=await JSZip.loadAsync(await f.arrayBuffer());let t='';
@@ -148,12 +347,17 @@ if(typeof pdfjsLib!='undefined')pdfjsLib.GlobalWorkerOptions.workerSrc='https://
 const nm=f.name.toLowerCase();if(nm.endsWith('.hwp'))return alert('구형 .hwp는 앱에서 읽지 못합니다. 한글에서 "다른 이름으로 저장"으로 .hwpx 또는 PDF로 저장한 뒤 불러오세요.');
 let t=nm.endsWith('.pdf')?await readPdf(f):nm.endsWith('.hwpx')?await readHwpx(f):await f.text();t=t.replace(/[ \t\u00a0]+/g,' ');const b={y:+$('#ly').value,g:+$('#lg').value,m:+$('#lm').value};const c=split(t);
 if(!c.length){$('#lt').value=t.slice(0,6000);return alert('번호를 자동으로 나누지 못했습니다. 텍스트를 아래 칸에 넣었으니 번호를 입력해 저장하세요.')}
-c.forEach(([no,text])=>{const x=P.find(p=>p.y==b.y&&p.g==b.g&&p.m==b.m&&p.no==no);x?x.text=text:P.push({id:Date.now()+no,...b,no,text})});
-SV('pp_p',P);renderLib();const got=c.map(x=>x[0]),miss=[];for(let i=18;i<=45;i++)if(!got.includes(i))miss.push(i);
+for(const [no,text] of c){
+  let x=P.find(p=>p.y==b.y&&p.g==b.g&&p.m==b.m&&p.no==no);
+  if(x) x.text=text;
+  else { x={id:Date.now()+no,...b,no,text}; P.push(x); }
+  await cloudSavePassage(x);
+}
+await saveLocalP();renderLib();const got=c.map(x=>x[0]),miss=[];for(let i=18;i<=45;i++)if(!got.includes(i))miss.push(i);
 if(miss.length)$('#lt').value=t.slice(0,8000);
 alert((window.np?'PDF '+window.np+'쪽을 읽었습니다.\n':'')+c.length+'개 저장: '+got.join(', ')+(miss.length?'\n\n찾지 못한 번호: '+miss.join(', ')+'\n전체 텍스트를 아래 입력칸에 넣어 두었으니 필요한 번호는 직접 나눠 저장하세요.':''));window.np=0}catch(e){alert('파일을 읽지 못했습니다: '+e.message)}}
 function backup(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({p:P,s:S})],{type:'application/json'}));a.download='passage-backup.json';a.click()}
-async function restore(f){if(!f)return;try{const d=JSON.parse(await f.text());(d.p||[]).forEach(p=>{if(!P.find(x=>x.id==p.id))P.push(p)});(d.s||[]).forEach(s=>{if(!S.find(x=>x.id==s.id))S.push(s)});SV('pp_p',P);saveS();renderLib();alert('복원했습니다')}catch{alert('백업 파일이 올바르지 않습니다')}}
+async function restore(f){if(!f)return;try{const d=JSON.parse(await f.text());(d.p||[]).forEach(p=>{if(!P.find(x=>x.id==p.id))P.push(p)});(d.s||[]).forEach(s=>{if(!S.find(x=>x.id==s.id))S.push(s)});await saveLocalP();await saveLocalS();renderLib();alert('복원했습니다')}catch{alert('백업 파일이 올바르지 않습니다')}}
 
 /* 캐릭터 스타일 설정 */
 const CHAR_MAP = {
@@ -211,7 +415,7 @@ function buildSketchnotePrompt(d, chKey){
 }
 
 /* Gemini 호출 */
-async function gem(prompt){if(!cfg.key)throw Error('설정 탭에서 API 키를 입력하세요');
+async function gem(prompt){if(!cfg.key)throw Error('설정 탭에서 Gemini API 키를 입력하세요');
 const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.model}:generateContent?key=${encodeURIComponent(cfg.key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:0.85,maxOutputTokens:30000}})});
 const j=await r.json();if(!r.ok)throw Error(j.error?.message||r.status);
 const t=(j.candidates?.[0]?.content?.parts||[]).map(p=>p.text||'').join('').replace(/^\s*```json|```\s*$/g,'').trim();return JSON.parse(t)}
@@ -266,15 +470,16 @@ ${p.text}`;
     const d=await gem(pr);
     d.sketchnotePrompt = buildSketchnotePrompt(d, ch);
     cur={id:Date.now(),y,g,m,no,ch,d,opts};
-    S.unshift(cur);saveS();$('#st').textContent='';show();
+    S.unshift(cur);
+    await saveLocalS();
+    await cloudSaveSheet(cur);
+    $('#st').textContent='';show();
   }catch(e){
     $('#st').textContent='실패: '+e.message+' (다시 시도해 보세요)';
   }finally{$('#gb').disabled=false}
 }
 
-function saveS(){S=S.slice(0,20);while(S.length){try{localStorage.setItem('pp_s',JSON.stringify(S));return}catch{S.pop()}}}
-
-/* 프롬프트 복사 및 완성된 스케치노트 이미지 첨부 기능 */
+/* 프롬프트 복사 & 초고효율 WebP 이미지 압축 첨부 엔진 */
 async function copyPrompt(){
   const ta = $('#sn_pr');
   if(!ta) return;
@@ -293,16 +498,29 @@ function attachImg(file){
   const reader = new FileReader();
   reader.onload = e => {
     const img = new Image();
-    img.onload = () => {
-      // 로컬스토리지 용량 절약을 위해 고화질 유지 선에서 리사이즈 압축 (최대 가로 1400px)
+    img.onload = async () => {
+      // 손글씨 가독성은 선명하게 유지하면서 용량을 80~130KB로 줄이는 WebP 스마트 압축
       const canvas = document.createElement('canvas');
-      const maxW = 1400;
+      const maxW = 1280;
       let w = img.width, h = img.height;
       if(w > maxW){ h = Math.round(h * maxW / w); w = maxW; }
       canvas.width = w; canvas.height = h;
-      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-      cur.d.sketchImg = canvas.toDataURL('image/jpeg', 0.85);
-      saveS();
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(img, 0, 0, w, h);
+
+      // WebP 포맷 우선 시도 (미지원 구형 브라우저만 JPEG 폴백)
+      let dataUrl = canvas.toDataURL('image/webp', 0.82);
+      if(!dataUrl.startsWith('data:image/webp')) dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+      // 만약 용량이 650KB를 넘으면 한 단계 더 다이어트 (Firestore 1MB 제한 안전 통과)
+      if(dataUrl.length > 650000) dataUrl = canvas.toDataURL('image/webp', 0.65);
+
+      const kb = Math.round((dataUrl.length * 3 / 4) / 1024);
+      cur.d.sketchImg = dataUrl;
+      cur.d.sketchKb = kb;
+      await saveLocalS();
+      await cloudSaveSheet(cur);
       renderSL();
     };
     img.src = e.target.result;
@@ -310,10 +528,12 @@ function attachImg(file){
   reader.readAsDataURL(file);
 }
 
-function removeImg(){
+async function removeImg(){
   if(!cur || !confirm('첨부한 스케치노트 이미지를 지울까요?')) return;
   delete cur.d.sketchImg;
-  saveS();
+  delete cur.d.sketchKb;
+  await saveLocalS();
+  await cloudSaveSheet(cur);
   renderSL();
 }
 
@@ -330,12 +550,20 @@ window.addEventListener('paste', e => {
 });
 
 /* 학습지 렌더링 */
-let D=LS('pp_d',{});const dstr=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),pk=s=>`${s.y}-${s.g}-${s.m}-${s.no}`;
+const dstr=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),pk=s=>`${s.y}-${s.g}-${s.m}-${s.no}`;
 function fin(){const k=pk(cur);D[k]?delete D[k]:D[k]=dstr(new Date());SV('pp_d',D);renderSL();sts()}
 function sts(){const ds=new Set(Object.values(D)),n=Object.keys(D).length;let d=new Date(),c=0;if(!ds.has(dstr(d)))d.setDate(d.getDate()-1);while(ds.has(dstr(d))){c++;d.setDate(d.getDate()-1)}$('#stat').textContent=`🔥 ${c}일 연속 · 🌲 나의 숲 ${n}그루`}
-function renderSL(){$('#sl').innerHTML=S.length?`<details ${cur?'':'open'}><summary>만든 학습지 ${S.length}개</summary>`+S.map(s=>`<div class="it"><b>${lab(s)}${D[pk(s)]?' ✔':''}</b><div class="a"><button class="g" onclick="openS(${s.id})">열기</button><button class="g" onclick="delS(${s.id})">삭제</button></div></div>`).join('')+'</details>':'<p>아직 만든 학습지가 없습니다. 만들기 탭에서 생성하세요.</p>';$('#acts').hidden=!cur;if(cur){$('#sheet').innerHTML=render(cur);$('#dn').textContent=D[pk(cur)]?'✔ 학습 완료됨 (취소)':'🌱 학습 완료!'}}
+function renderSL(){$('#sl').innerHTML=S.length?`<details ${cur?'':'open'}><summary>만든 학습지 ${S.length}개</summary>`+S.map(s=>`<div class="it"><b>${lab(s)}${s.d?.sketchImg?' 🖼️':''}${D[pk(s)]?' ✔':''}</b><div class="a"><button class="g" onclick="openS(${s.id})">열기</button><button class="g" onclick="delS(${s.id})">삭제</button></div></div>`).join('')+'</details>':'<p>아직 만든 학습지가 없습니다. 만들기 탭에서 생성하세요.</p>';$('#acts').hidden=!cur;if(cur){$('#sheet').innerHTML=render(cur);$('#dn').textContent=D[pk(cur)]?'✔ 학습 완료됨 (취소)':'🌱 학습 완료!'}}
 function openS(id){cur=S.find(s=>s.id==id);show()}
-function delS(id){if(confirm('삭제할까요?')){S=S.filter(s=>s.id!=id);if(cur&&cur.id==id){cur=null;$('#sheet').innerHTML=''}saveS();renderSL()}}
+async function delS(id){
+  if(confirm('삭제할까요?')){
+    S=S.filter(s=>s.id!=id);
+    if(cur&&cur.id==id){cur=null;$('#sheet').innerHTML=''}
+    await saveLocalS();
+    await cloudDelSheet(id);
+    renderSL();
+  }
+}
 function show(){tab('res')}
 const star=n=>'★'.repeat(Math.max(0,Math.min(5,n|0))),L=(a,f)=>(a||[]).map(f).join(''),PH=(g,t,u)=>`<div class="ph"><span class="tag">${g}</span><h2>${t}</h2><span class="sb">${u}</span></div>`;
 
@@ -374,11 +602,11 @@ function render(s){
         ${d.sketchImg?`<button class="g" onclick="removeImg()">🗑 이미지 제거</button>`:''}
       </div>
     </div>
-    <textarea id="sn_pr" class="pr-ta" oninput="cur.d.sketchnotePrompt=this.value;saveS()">${esc(d.sketchnotePrompt)}</textarea>
-    <small style="color:#666;display:block;margin-top:4px">💡 <b>사용 팁:</b> [프롬프트 복사하기]를 눌러 나노바나나(채팅창)에서 이미지를 생성한 뒤, 이미지를 복사해 이 화면에서 <b>Ctrl+V</b>를 누르거나 [완성한 스케치노트 이미지 넣기]로 등록하면 아래에 들어갑니다(인쇄 시 이 박스는 숨겨지고 깔끔하게 출력됩니다).</small>
+    <textarea id="sn_pr" class="pr-ta" oninput="cur.d.sketchnotePrompt=this.value;saveLocalS();cloudSaveSheet(cur)">${esc(d.sketchnotePrompt)}</textarea>
+    <small style="color:#666;display:block;margin-top:4px">💡 <b>사용 팁:</b> [프롬프트 복사하기]를 눌러 나노바나나(채팅창)에서 이미지를 그린 뒤, 이미지를 복사해 이 화면에서 <b>Ctrl+V</b>를 누르거나 [완성한 스케치노트 이미지 넣기]로 등록하면 자동으로 초경량 WebP로 압축되어 클라우드에 저장됩니다.</small>
   </div>
 
-  ${d.sketchImg ? `<div class="sn-img-wrap"><img src="${d.sketchImg}" alt="비주얼 스케치노트"></div>` : `
+  ${d.sketchImg ? `<div class="sn-img-wrap"><img src="${d.sketchImg}" alt="비주얼 스케치노트"><div class="img-meta np">⚡ 초경량 WebP 압축 적용됨 (${d.sketchKb || '~100'} KB) · 클라우드 공유 가능</div></div>` : `
   <div class="ban">✏️ 4분할 스케치노트 구성안 미리보기 ☆♡</div>
   <div class="stg">${L(d.steps,(x,i)=>`<div class="st">
     <div class="st-hd">${esc(x.head || `Step ${i+1}`)}</div>
@@ -400,7 +628,74 @@ function render(s){
   return p1+p2+p3+p4;
 }
 
-async function share(){const d=cur.d,t=`${NK()}의 ${lab(cur)} 지문분석\n\n소재: ${d.topic}\n주제: ${d.subject}\n요지: ${d.gist}\n요약: ${d.summary}\n\n[스케치노트 프롬프트]\n${d.sketchnotePrompt}`;
-if(navigator.share){try{await navigator.share({title:lab(cur)+' 지문분석',text:t})}catch{}}else{try{await navigator.clipboard.writeText(t);alert('내용을 복사했습니다. 카카오톡에 붙여넣으세요.')}catch{alert('이 브라우저는 공유를 지원하지 않습니다.')}}}
-ff();ttl();sts();tab('lib');
+/* 공유 기능 (클라우드 링크 공유 & 텍스트 공유) */
+async function shareLink(){
+  if(!cur) return;
+  if(!fdb) return alert('클라우드 공유 링크를 만들려면 먼저 [⚙️ 설정] 탭에서 Firebase Project ID와 API Key를 등록해 주세요.');
+  const ok = await cloudSaveSheet(cur);
+  if(!ok) return;
+  const baseUrl = location.origin + location.pathname;
+  const url = `${baseUrl}?s=${cur.id}&pid=${encodeURIComponent(cfg.fbPid)}&k=${encodeURIComponent(cfg.fbKey)}`;
+  if(navigator.share){
+    try{ await navigator.share({title: `${lab(cur)} 학습지`, text: `${NK()}의 ${lab(cur)} 스마트 학습지`, url}); return; }catch{}
+  }
+  try{
+    await navigator.clipboard.writeText(url);
+    alert('🔗 클라우드 학습지 공유 링크가 복사되었습니다!\n카카오톡 등에 붙여넣으면 상대방도 삽화가 포함된 학습지를 바로 볼 수 있습니다.');
+  }catch{
+    prompt('아래 링크를 복사해 공유하세요:', url);
+  }
+}
+
+async function shareText(){
+  const d=cur.d,t=`${NK()}의 ${lab(cur)} 지문분석\n\n소재: ${d.topic}\n주제: ${d.subject}\n요지: ${d.gist}\n요약: ${d.summary}\n\n[스케치노트 프롬프트]\n${d.sketchnotePrompt}`;
+  if(navigator.share){try{await navigator.share({title:lab(cur)+' 지문분석',text:t})}catch{}}else{try{await navigator.clipboard.writeText(t);alert('내용을 복사했습니다. 카카오톡에 붙여넣으세요.')}catch{alert('이 브라우저는 공유를 지원하지 않습니다.')}}
+}
+
+/* 초기 구동 및 공유 링크(?s=ID) 자동 열기 처리 */
+(async function boot(){
+  // URL 파라미터에 공유용 Firebase 정보나 학습지 ID가 있으면 우선 적용
+  const params = new URLSearchParams(location.search);
+  const sharedId = params.get('s');
+  const sharedPid = params.get('pid');
+  const sharedKey = params.get('k');
+  if(sharedPid && sharedKey && (!cfg.fbPid || !cfg.fbKey)){
+    cfg.fbPid = sharedPid;
+    cfg.fbKey = sharedKey;
+    SV('pp_c', cfg);
+  }
+
+  initUI();
+  initFirebase();
+
+  // 기존 localStorage 데이터를 대용량 IndexedDB로 자동 마이그레이션
+  P = await IDB.get('pp_p', null) ?? LS('pp_p', []);
+  S = await IDB.get('pp_s', null) ?? LS('pp_s', []);
+  await saveLocalP();
+  await saveLocalS();
+
+  if(fdb) await syncFromCloud(false);
+
+  // 공유 링크로 접속한 경우 해당 학습지 즉시 열기
+  if(sharedId){
+    let target = S.find(x => String(x.id) === String(sharedId));
+    if(!target && fdb){
+      try{
+        const doc = await fdb.collection('sheets').doc(String(sharedId)).get();
+        if(doc.exists){
+          target = doc.data();
+          S.unshift(target);
+          await saveLocalS();
+        }
+      }catch(e){ console.warn(e); }
+    }
+    if(target){
+      cur = target;
+      ff(); sts(); show();
+      return;
+    }
+  }
+
+  ff(); sts(); tab('lib');
+})();
 </script></body></html>
